@@ -1,0 +1,105 @@
+site_name: Mastering SwiftUI
+site_url: https://isiflo2728.github.io/swift-vault/
+site_description: A living knowledge vault — every SwiftUI project, concept, and lesson learned while building real iOS apps from scratch.
+site_author: Isidoro Flores
+
+repo_name: isiflo2728/mastering-swift-ui
+repo_url: https://github.com/isiflo2728/mastering-swift-ui
+
+theme:
+  name: material
+  palette:
+    - scheme: slate
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-sunny
+        name: Switch to light mode
+    - scheme: default
+      primary: deep orange
+      accent: orange
+      toggle:
+        icon: material/weather-night
+        name: Switch to dark mode
+  font:
+    text: Inter
+    code: JetBrains Mono
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.expand
+    - navigation.top
+    - navigation.indexes
+    - search.highlight
+    - search.suggest
+    - search.share
+    - content.code.copy
+    - content.code.annotate
+    - toc.follow
+  icon:
+    logo: simple/swift
+    repo: fontawesome/brands/github
+  favicon: https://developer.apple.com/favicon.ico
+
+plugins:
+  - search
+  - glightbox
+
+markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - attr_list
+  - md_in_html
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+
+nav:
+  - Home: index.md
+  - Projects:
+    - projects/index.md
+    - WordScramble: projects/wordscramble.md
+    - AnimationTechnique: projects/animation-technique.md
+    - iExpense: projects/iexpense.md
+    - Moonshot: projects/moonshot.md
+    - Cupcake Corner: projects/cupcake-corner.md
+    - BookWorm: projects/bookworm.md
+  - Concepts:
+    - concepts/index.md
+    - State & Data Flow: concepts/state-data-flow.md
+    - Navigation: concepts/navigation.md
+    - Layouts & Lists: concepts/layouts-lists.md
+    - Animations: concepts/animations.md
+    - Persistence: concepts/persistence.md
+    - Networking: concepts/networking.md
+  - Timeline: timeline.md
+  - Knowledge Graph: graph.md
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/isiflo2728
+  generator: false
+
+extra_css:
+  - stylesheets/extra.css

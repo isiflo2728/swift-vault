@@ -1,0 +1,78 @@
+/* Swift orange brand accent on nav active states */
+.md-nav__link--active {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+}
+
+/* Code blocks — tighter, more readable */
+.highlight pre {
+  border-radius: 8px;
+}
+
+/* Concept tags styling */
+.concept-tag {
+  display: inline-block;
+  background: var(--md-accent-fg-color);
+  color: #fff;
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin: 2px;
+  opacity: 0.85;
+}
+
+/* Project card grid */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin: 1.5rem 0;
+}
+
+.project-card {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 10px;
+  padding: 1.2rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.project-card:hover {
+  border-color: var(--md-accent-fg-color);
+  box-shadow: 0 2px 12px rgba(255, 87, 34, 0.12);
+}
+
+.project-card h3 {
+  margin-top: 0;
+  color: var(--md-accent-fg-color);
+}
+
+/* Mermaid graph centering */
+.mermaid {
+  text-align: center;
+  margin: 1.5rem 0;
+}
+
+/* Timeline styles */
+.timeline {
+  position: relative;
+  padding-left: 2rem;
+  border-left: 2px solid var(--md-accent-fg-color);
+  margin: 1.5rem 0;
+}
+
+.timeline-item {
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: -2.45rem;
+  top: 0.35rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--md-accent-fg-color);
+}
