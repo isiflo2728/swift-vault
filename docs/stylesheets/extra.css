@@ -315,7 +315,9 @@ body::after {
   margin: 1.5rem 0;
 }
 
-.project-card {
+a.project-card {
+  display: flex;
+  flex-direction: column;
   background: var(--space-card);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(180,79,255,0.2);
@@ -324,33 +326,83 @@ body::after {
   transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
   position: relative;
   overflow: hidden;
+  text-decoration: none !important;
+  border-bottom: 1px solid rgba(180,79,255,0.2) !important;
+  cursor: pointer;
 }
 
-.project-card::before {
+a.project-card::before {
   content: '';
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle at center, rgba(180,79,255,0.04) 0%, transparent 60%);
+  background: radial-gradient(circle at center, rgba(180,79,255,0.05) 0%, transparent 60%);
   opacity: 0;
   transition: opacity 0.3s;
+  pointer-events: none;
 }
 
-.project-card:hover::before { opacity: 1; }
+a.project-card:hover::before { opacity: 1; }
 
-.project-card:hover {
-  border-color: var(--neon-orange);
+a.project-card:hover {
+  border-color: var(--neon-orange) !important;
   box-shadow: 0 0 30px rgba(255,107,53,0.2), 0 4px 20px rgba(0,0,0,0.4);
   transform: translateY(-3px);
+  text-shadow: none;
 }
 
-.project-card h3 {
-  margin-top: 0 !important;
+a.project-card h3 {
+  margin-top: 0.4rem !important;
+  margin-bottom: 0.5rem !important;
   color: var(--neon-orange) !important;
   font-family: 'Space Grotesk', sans-serif !important;
   -webkit-text-fill-color: var(--neon-orange) !important;
+  font-size: 1.1rem;
+}
+
+a.project-card p {
+  color: #9aa3c2;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+  flex: 1;
+}
+
+.card-tag {
+  display: inline-block;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.25);
+  border-radius: 4px;
+  color: var(--neon-blue) !important;
+  font-size: 0.68rem;
+  font-family: 'JetBrains Mono', monospace;
+  padding: 2px 7px;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.2rem;
+}
+
+.card-concepts {
+  font-size: 0.72rem;
+  color: #5a6385;
+  font-family: 'JetBrains Mono', monospace;
+  margin-bottom: 1rem;
+  letter-spacing: 0.02em;
+}
+
+.card-cta {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--neon-orange);
+  font-family: 'Space Grotesk', sans-serif;
+  letter-spacing: 0.04em;
+  margin-top: auto;
+  transition: letter-spacing 0.2s;
+}
+
+a.project-card:hover .card-cta {
+  letter-spacing: 0.08em;
 }
 
 /* ── Search ──────────────────────────────────────────────────────────────── */

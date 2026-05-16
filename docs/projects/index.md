@@ -4,66 +4,54 @@ Six SwiftUI apps built from scratch while learning iOS development. Each one tar
 
 ---
 
-<div class="project-grid" markdown>
+<div class="project-grid">
 
-<div class="project-card" markdown>
+<a class="project-card" href="wordscramble/">
+  <div class="card-tag">main</div>
+  <h3>WordScramble</h3>
+  <p>A word game that validates anagrams against a real word list.</p>
+  <div class="card-concepts">List · TextField · NavigationStack</div>
+  <div class="card-cta">View Project →</div>
+</a>
 
-### WordScramble
-A word game that validates anagrams against a real word list.
-**Branch:** `main`
+<a class="project-card" href="animation-technique/">
+  <div class="card-tag">animation-technique</div>
+  <h3>AnimationTechnique</h3>
+  <p>Playground for every SwiftUI animation primitive.</p>
+  <div class="card-concepts">Implicit · Explicit · Transitions · DragGesture</div>
+  <div class="card-cta">View Project →</div>
+</a>
 
-[:octicons-arrow-right-16: View Project](wordscramble.md)
+<a class="project-card" href="iexpense/">
+  <div class="card-tag">iexpense</div>
+  <h3>iExpense</h3>
+  <p>Personal/business expense tracker with persistent storage.</p>
+  <div class="card-concepts">@Observable · UserDefaults · Sheets</div>
+  <div class="card-cta">View Project →</div>
+</a>
 
-</div>
+<a class="project-card" href="moonshot/">
+  <div class="card-tag">main</div>
+  <h3>Moonshot</h3>
+  <p>Interactive history of the Apollo missions — dark theme, multi-level navigation.</p>
+  <div class="card-concepts">LazyVGrid · Codable · NavigationStack</div>
+  <div class="card-cta">View Project →</div>
+</a>
 
-<div class="project-card" markdown>
+<a class="project-card" href="cupcake-corner/">
+  <div class="card-tag">cupcake-corner</div>
+  <h3>Cupcake Corner</h3>
+  <p>Multi-screen ordering app that hits a real REST API via URLSession.</p>
+  <div class="card-concepts">URLSession · async/await · Codable</div>
+  <div class="card-cta">View Project →</div>
+</a>
 
-### AnimationTechnique
-Playground for every SwiftUI animation primitive.
-**Branch:** `animation-technique`
-
-[:octicons-arrow-right-16: View Project](animation-technique.md)
-
-</div>
-
-<div class="project-card" markdown>
-
-### iExpense
-Personal/business expense tracker with persistent storage.
-**Branch:** `iexpense`
-
-[:octicons-arrow-right-16: View Project](iexpense.md)
-
-</div>
-
-<div class="project-card" markdown>
-
-### Moonshot
-Interactive history of the Apollo missions — dark theme, multi-level navigation.
-**Branch:** `main`
-
-[:octicons-arrow-right-16: View Project](moonshot.md)
-
-</div>
-
-<div class="project-card" markdown>
-
-### Cupcake Corner
-Multi-screen ordering app that hits a real REST API via URLSession.
-**Branch:** `cupcake-corner`
-
-[:octicons-arrow-right-16: View Project](cupcake-corner.md)
-
-</div>
-
-<div class="project-card" markdown>
-
-### BookWorm
-Book tracking app powered by SwiftData with a custom star-rating component.
-**Branch:** `bookworm`
-
-[:octicons-arrow-right-16: View Project](bookworm.md)
-
-</div>
+<a class="project-card" href="bookworm/">
+  <div class="card-tag">bookworm</div>
+  <h3>BookWorm</h3>
+  <p>Book tracking app powered by SwiftData with a custom star-rating component.</p>
+  <div class="card-concepts">SwiftData · @Query · @Binding</div>
+  <div class="card-cta">View Project →</div>
+</a>
 
 </div>
