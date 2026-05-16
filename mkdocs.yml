@@ -10,17 +10,8 @@ theme:
   name: material
   palette:
     - scheme: slate
-      primary: deep orange
-      accent: orange
-      toggle:
-        icon: material/weather-sunny
-        name: Switch to light mode
-    - scheme: default
-      primary: deep orange
-      accent: orange
-      toggle:
-        icon: material/weather-night
-        name: Switch to dark mode
+      primary: black
+      accent: deep orange
   font:
     text: Inter
     code: JetBrains Mono

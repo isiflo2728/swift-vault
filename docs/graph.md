@@ -1,129 +1,291 @@
 # Knowledge Graph
 
-> How projects and concepts connect across the entire vault.
+> An interactive map of how every project and concept connects. Drag nodes, scroll to zoom, hover to highlight, click to open.
 
----
+<style>
+#graph-wrap {
+  position: relative;
+  background: #111;
+  border-radius: 12px;
+  overflow: hidden;
+  margin: 1.5rem 0;
+  border: 1px solid #2a2a2a;
+}
+#graph-legend {
+  position: absolute;
+  top: 14px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 12px;
+  font-family: Inter, sans-serif;
+  z-index: 10;
+  background: rgba(17,17,17,0.85);
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid #2a2a2a;
+}
+.leg-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: middle; }
+.leg-project { background: #FF5722; }
+.leg-concept { background: #4fc3f7; }
+#graph-legend span { color: #aaa; }
+#graph-hint {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 11px;
+  color: #555;
+  font-family: Inter, sans-serif;
+  z-index: 10;
+}
+#kg { width: 100%; display: block; }
+#graph-tooltip {
+  position: absolute;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 12px;
+  font-family: Inter, sans-serif;
+  color: #eee;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s;
+  z-index: 20;
+  white-space: nowrap;
+}
+</style>
 
-## Project → Concept Map
+<div id="graph-wrap">
+  <div id="graph-legend">
+    <span><span class="leg-dot leg-project"></span>Project</span>
+    <span><span class="leg-dot leg-concept"></span>Concept</span>
+  </div>
+  <div id="graph-hint">drag · scroll to zoom · click to open</div>
+  <div id="graph-tooltip"></div>
+  <svg id="kg" height="600"></svg>
+</div>
 
-```mermaid
-graph TD
-    subgraph Projects
-        WS[WordScramble]
-        AT[AnimationTechnique]
-        IE[iExpense]
-        MS[Moonshot]
-        CC[Cupcake Corner]
-        BW[BookWorm]
-    end
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+(function () {
+  const nodes = [
+    { id: "WordScramble",      type: "project", url: "../projects/wordscramble/" },
+    { id: "AnimationTechnique",type: "project", url: "../projects/animation-technique/" },
+    { id: "iExpense",          type: "project", url: "../projects/iexpense/" },
+    { id: "Moonshot",          type: "project", url: "../projects/moonshot/" },
+    { id: "Cupcake Corner",    type: "project", url: "../projects/cupcake-corner/" },
+    { id: "BookWorm",          type: "project", url: "../projects/bookworm/" },
 
-    subgraph State["State & Data Flow"]
-        STATE[@State]
-        BIND[@Binding]
-        OBS[@Observable]
-        ENV[@Environment]
-        QUERY[@Query]
-    end
+    { id: "@State",             type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "@Binding",           type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "@Observable",        type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "@Environment",       type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "@Query",             type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "NavigationStack",    type: "concept", url: "../concepts/navigation/" },
+    { id: "Sheet",              type: "concept", url: "../concepts/navigation/" },
+    { id: "navigationDestination", type: "concept", url: "../concepts/navigation/" },
+    { id: "List",               type: "concept", url: "../concepts/layouts-lists/" },
+    { id: "LazyVGrid",          type: "concept", url: "../concepts/layouts-lists/" },
+    { id: "ScrollView",         type: "concept", url: "../concepts/layouts-lists/" },
+    { id: "Implicit Animation", type: "concept", url: "../concepts/animations/" },
+    { id: "Explicit Animation", type: "concept", url: "../concepts/animations/" },
+    { id: "Transitions",        type: "concept", url: "../concepts/animations/" },
+    { id: "DragGesture",        type: "concept", url: "../concepts/animations/" },
+    { id: "UserDefaults",       type: "concept", url: "../concepts/persistence/" },
+    { id: "SwiftData",          type: "concept", url: "../concepts/persistence/" },
+    { id: "URLSession",         type: "concept", url: "../concepts/networking/" },
+    { id: "Codable",            type: "concept", url: "../concepts/networking/" },
+    { id: "async/await",        type: "concept", url: "../concepts/networking/" },
+    { id: "AsyncImage",         type: "concept", url: "../concepts/networking/" },
+  ];
 
-    subgraph Nav[Navigation]
-        NAVSTACK[NavigationStack]
-        SHEET[Sheet]
-        NAVDEST[navigationDestination]
-    end
+  const links = [
+    { source: "WordScramble", target: "@State" },
+    { source: "WordScramble", target: "List" },
+    { source: "WordScramble", target: "NavigationStack" },
 
-    subgraph Layout[Layouts & Lists]
-        LIST[List + ForEach]
-        GRID[LazyVGrid]
-        SCROLL[ScrollView]
-    end
+    { source: "AnimationTechnique", target: "Implicit Animation" },
+    { source: "AnimationTechnique", target: "Explicit Animation" },
+    { source: "AnimationTechnique", target: "Transitions" },
+    { source: "AnimationTechnique", target: "DragGesture" },
 
-    subgraph Persist[Persistence]
-        UD[UserDefaults]
-        SD[SwiftData]
-    end
+    { source: "iExpense", target: "@Observable" },
+    { source: "iExpense", target: "@State" },
+    { source: "iExpense", target: "Sheet" },
+    { source: "iExpense", target: "UserDefaults" },
+    { source: "iExpense", target: "Codable" },
 
-    subgraph Net[Networking]
-        URL[URLSession]
-        COD[Codable]
-        ASYNC[async/await]
-        AIMG[AsyncImage]
-    end
+    { source: "Moonshot", target: "NavigationStack" },
+    { source: "Moonshot", target: "navigationDestination" },
+    { source: "Moonshot", target: "LazyVGrid" },
+    { source: "Moonshot", target: "ScrollView" },
+    { source: "Moonshot", target: "Codable" },
 
-    subgraph Anim[Animations]
-        IMPL[Implicit]
-        EXPL[Explicit]
-        TRANS[Transitions]
-        DRAG[DragGesture]
-    end
+    { source: "Cupcake Corner", target: "@Observable" },
+    { source: "Cupcake Corner", target: "URLSession" },
+    { source: "Cupcake Corner", target: "Codable" },
+    { source: "Cupcake Corner", target: "async/await" },
+    { source: "Cupcake Corner", target: "AsyncImage" },
+    { source: "Cupcake Corner", target: "navigationDestination" },
 
-    WS --> STATE
-    WS --> LIST
-    WS --> NAVSTACK
+    { source: "BookWorm", target: "SwiftData" },
+    { source: "BookWorm", target: "@Query" },
+    { source: "BookWorm", target: "@Environment" },
+    { source: "BookWorm", target: "@Binding" },
+    { source: "BookWorm", target: "List" },
+  ];
 
-    AT --> IMPL
-    AT --> EXPL
-    AT --> TRANS
-    AT --> DRAG
+  // Degree map for sizing
+  const degree = {};
+  nodes.forEach(n => degree[n.id] = 0);
+  links.forEach(l => { degree[l.source]++; degree[l.target]++; });
 
-    IE --> OBS
-    IE --> STATE
-    IE --> SHEET
-    IE --> UD
-    IE --> COD
+  function radius(d) {
+    const base = d.type === "project" ? 14 : 8;
+    return base + Math.sqrt(degree[d.id]) * 3;
+  }
 
-    MS --> NAVDEST
-    MS --> NAVSTACK
-    MS --> GRID
-    MS --> SCROLL
-    MS --> COD
+  const svg = d3.select("#kg");
+  const wrap = document.getElementById("graph-wrap");
+  const W = wrap.clientWidth;
+  const H = 600;
+  svg.attr("width", W).attr("height", H);
 
-    CC --> OBS
-    CC --> URL
-    CC --> COD
-    CC --> ASYNC
-    CC --> AIMG
-    CC --> NAVDEST
+  const g = svg.append("g");
 
-    BW --> SD
-    BW --> QUERY
-    BW --> ENV
-    BW --> BIND
-    BW --> LIST
-```
+  // Zoom
+  svg.call(
+    d3.zoom()
+      .scaleExtent([0.25, 4])
+      .on("zoom", e => g.attr("transform", e.transform))
+  );
 
----
+  // Simulation
+  const sim = d3.forceSimulation(nodes)
+    .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
+      return d.source.type === "project" ? 110 : 90;
+    }))
+    .force("charge", d3.forceManyBody().strength(-350))
+    .force("center", d3.forceCenter(W / 2, H / 2))
+    .force("collision", d3.forceCollide().radius(d => radius(d) + 12));
 
-## Concept Dependency Graph
+  // Glow filter
+  const defs = svg.append("defs");
+  const filter = defs.append("filter").attr("id", "glow");
+  filter.append("feGaussianBlur").attr("stdDeviation", "3").attr("result", "blur");
+  const feMerge = filter.append("feMerge");
+  feMerge.append("feMergeNode").attr("in", "blur");
+  feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
-How concepts build on each other:
+  // Links
+  const link = g.append("g")
+    .selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("stroke", "#2e2e2e")
+    .attr("stroke-width", 1.5);
 
-```mermaid
-graph LR
-    STATE["@State\n(basics)"] --> BIND["@Binding\n(child writes back)"]
-    STATE --> OBS["@Observable\n(shared class)"]
-    OBS --> ENV["@Environment\n(injected globals)"]
-    OBS --> QUERY["@Query\n(SwiftData live fetch)"]
+  // Nodes
+  const node = g.append("g")
+    .selectAll("g")
+    .data(nodes)
+    .join("g")
+    .style("cursor", "pointer")
+    .call(
+      d3.drag()
+        .on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on("drag",  (e, d) => { d.fx = e.x; d.fy = e.y; })
+        .on("end",   (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+    );
 
-    LIST[List] --> ONDEL[onDelete]
-    LIST --> ONMOV[onMove]
+  // Outer glow ring for projects
+  node.filter(d => d.type === "project")
+    .append("circle")
+    .attr("r", d => radius(d) + 5)
+    .attr("fill", "none")
+    .attr("stroke", "#FF5722")
+    .attr("stroke-width", 1)
+    .attr("opacity", 0.25)
+    .attr("filter", "url(#glow)");
 
-    COD[Codable] --> UD[UserDefaults]
-    COD --> URL[URLSession]
-    URL --> ASYNC[async/await]
+  // Main circle
+  node.append("circle")
+    .attr("r", radius)
+    .attr("fill", d => d.type === "project" ? "#FF5722" : "#1a3a4a")
+    .attr("stroke", d => d.type === "project" ? "#ff8a65" : "#4fc3f7")
+    .attr("stroke-width", d => d.type === "project" ? 2 : 1.5);
 
-    SD[SwiftData] --> QUERY
-    SD --> ENV
+  // Labels
+  node.append("text")
+    .text(d => d.id)
+    .attr("x", d => radius(d) + 6)
+    .attr("y", 4)
+    .attr("fill", d => d.type === "project" ? "#ff8a65" : "#b0d8f0")
+    .attr("font-size", d => d.type === "project" ? "12px" : "10.5px")
+    .attr("font-family", "Inter, JetBrains Mono, monospace")
+    .attr("font-weight", d => d.type === "project" ? "600" : "400");
 
-    ANIM_IMPL[Implicit animation] --> ANIM_EXPL[Explicit animation]
-    ANIM_EXPL --> TRANS[Transitions]
-    TRANS --> DRAG[Gesture-driven motion]
-```
+  // Tooltip
+  const tooltip = d3.select("#graph-tooltip");
+
+  // Hover + click
+  node
+    .on("mouseover", function (event, d) {
+      const connected = new Set([d.id]);
+      links.forEach(l => {
+        if (l.source.id === d.id) connected.add(l.target.id);
+        if (l.target.id === d.id) connected.add(l.source.id);
+      });
+
+      node.selectAll("circle:last-of-type")
+        .attr("opacity", n => connected.has(n.id) ? 1 : 0.1);
+      node.selectAll("text")
+        .attr("opacity", n => connected.has(n.id) ? 1 : 0.1);
+      node.selectAll("circle:first-of-type")
+        .attr("opacity", n => connected.has(n.id) ? 0.25 : 0.03);
+
+      link
+        .attr("stroke", l => (l.source.id === d.id || l.target.id === d.id) ? "#FF5722" : "#1a1a1a")
+        .attr("stroke-width", l => (l.source.id === d.id || l.target.id === d.id) ? 2.5 : 1)
+        .attr("stroke-opacity", l => (l.source.id === d.id || l.target.id === d.id) ? 0.9 : 0.05);
+
+      const tag = d.type === "project" ? "Project" : "Concept";
+      const conns = links.filter(l => l.source.id === d.id || l.target.id === d.id).length;
+      tooltip
+        .style("opacity", 1)
+        .html(`<strong>${d.id}</strong><br><span style="color:#888">${tag} · ${conns} connection${conns !== 1 ? "s" : ""}</span>`);
+    })
+    .on("mousemove", function (event) {
+      const [mx, my] = d3.pointer(event, wrap);
+      tooltip.style("left", (mx + 14) + "px").style("top", (my - 10) + "px");
+    })
+    .on("mouseout", function () {
+      node.selectAll("circle:last-of-type").attr("opacity", 1);
+      node.selectAll("text").attr("opacity", 1);
+      node.selectAll("circle:first-of-type").attr("opacity", 0.25);
+      link.attr("stroke", "#2e2e2e").attr("stroke-width", 1.5).attr("stroke-opacity", 1);
+      tooltip.style("opacity", 0);
+    })
+    .on("click", (event, d) => {
+      window.location.href = d.url;
+    });
+
+  sim.on("tick", () => {
+    link
+      .attr("x1", d => d.source.x).attr("y1", d => d.source.y)
+      .attr("x2", d => d.target.x).attr("y2", d => d.target.y);
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+  });
+})();
+</script>
 
 ---
 
 ## Concept Coverage by Project
 
-|  | WS | AT | iExpense | Moonshot | Cupcake | BookWorm |
+|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm |
 |---|:---:|:---:|:---:|:---:|:---:|:---:|
 | @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
 | @Binding | | | | | | ✓ |
@@ -132,14 +294,17 @@ graph LR
 | @Query | | | | | | ✓ |
 | NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ |
 | Sheet | | | ✓ | | | |
+| navigationDestination | | | | ✓ | ✓ | |
 | List | ✓ | | ✓ | | | ✓ |
 | LazyVGrid | | | | ✓ | | |
-| Implicit animation | | ✓ | | | | |
-| Explicit animation | | ✓ | | | | |
+| ScrollView | | | | ✓ | | |
+| Implicit Animation | | ✓ | | | | |
+| Explicit Animation | | ✓ | | | | |
 | Transitions | | ✓ | | | | |
+| DragGesture | | ✓ | | | | |
 | UserDefaults | | | ✓ | | | |
 | SwiftData | | | | | | ✓ |
-| URLSession | | | | | ✓ | |
 | Codable | | | ✓ | ✓ | ✓ | |
+| URLSession | | | | | ✓ | |
 | async/await | | | | | ✓ | |
 | AsyncImage | | | | | ✓ | |
