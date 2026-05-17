@@ -9,7 +9,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
 ## What's Inside
 
 === "Projects"
-    Six real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
+    Seven real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
 
     | Project | Focus | Key Concepts |
     |---|---|---|
@@ -19,6 +19,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     | [Moonshot](projects/moonshot.md) | Apollo missions | `LazyVGrid`, JSON decoding, multi-level nav |
     | [Cupcake Corner](projects/cupcake-corner.md) | Ordering app | `URLSession`, `Codable`, `@Observable` |
     | [BookWorm](projects/bookworm.md) | Book tracker | `SwiftData`, `@Model`, custom components |
+    | [SwiftDataProject](projects/swiftdataproject.md) | User & job manager | `#Predicate`, `SortDescriptor`, `@Bindable`, CloudKit |
 
 === "Concepts"
     Concepts extracted and linked across all projects so patterns become visible.

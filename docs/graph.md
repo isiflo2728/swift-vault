@@ -77,6 +77,7 @@
     { id: "Moonshot",          type: "project", url: "../projects/moonshot/" },
     { id: "Cupcake Corner",    type: "project", url: "../projects/cupcake-corner/" },
     { id: "BookWorm",          type: "project", url: "../projects/bookworm/" },
+    { id: "SwiftDataProject",  type: "project", url: "../projects/swiftdataproject/" },
 
     { id: "@State",             type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Binding",           type: "concept", url: "../concepts/state-data-flow/" },
@@ -99,6 +100,11 @@
     { id: "Codable",            type: "concept", url: "../concepts/networking/" },
     { id: "async/await",        type: "concept", url: "../concepts/networking/" },
     { id: "AsyncImage",         type: "concept", url: "../concepts/networking/" },
+    { id: "#Predicate",         type: "concept", url: "../concepts/persistence/" },
+    { id: "SortDescriptor",     type: "concept", url: "../concepts/persistence/" },
+    { id: "@Bindable",          type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "CloudKit",           type: "concept", url: "../concepts/persistence/" },
+    { id: "@Relationship",      type: "concept", url: "../concepts/persistence/" },
   ];
 
   const links = [
@@ -135,6 +141,18 @@
     { source: "BookWorm", target: "@Environment" },
     { source: "BookWorm", target: "@Binding" },
     { source: "BookWorm", target: "List" },
+
+    { source: "SwiftDataProject", target: "SwiftData" },
+    { source: "SwiftDataProject", target: "@Query" },
+    { source: "SwiftDataProject", target: "@Environment" },
+    { source: "SwiftDataProject", target: "@Bindable" },
+    { source: "SwiftDataProject", target: "#Predicate" },
+    { source: "SwiftDataProject", target: "SortDescriptor" },
+    { source: "SwiftDataProject", target: "@Relationship" },
+    { source: "SwiftDataProject", target: "NavigationStack" },
+    { source: "SwiftDataProject", target: "navigationDestination" },
+    { source: "SwiftDataProject", target: "CloudKit" },
+    { source: "SwiftDataProject", target: "List" },
   ];
 
   // Degree map for sizing
@@ -285,26 +303,31 @@
 
 ## Concept Coverage by Project
 
-|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|
-| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| @Binding | | | | | | ✓ |
-| @Observable | | | ✓ | | ✓ | |
-| @Environment | | | | | | ✓ |
-| @Query | | | | | | ✓ |
-| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ |
-| Sheet | | | ✓ | | | |
-| navigationDestination | | | | ✓ | ✓ | |
-| List | ✓ | | ✓ | | | ✓ |
-| LazyVGrid | | | | ✓ | | |
-| ScrollView | | | | ✓ | | |
-| Implicit Animation | | ✓ | | | | |
-| Explicit Animation | | ✓ | | | | |
-| Transitions | | ✓ | | | | |
-| DragGesture | | ✓ | | | | |
-| UserDefaults | | | ✓ | | | |
-| SwiftData | | | | | | ✓ |
-| Codable | | | ✓ | ✓ | ✓ | |
-| URLSession | | | | | ✓ | |
-| async/await | | | | | ✓ | |
-| AsyncImage | | | | | ✓ | |
+|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| @Binding | | | | | | ✓ | |
+| @Bindable | | | | | | | ✓ |
+| @Observable | | | ✓ | | ✓ | | |
+| @Environment | | | | | | ✓ | ✓ |
+| @Query | | | | | | ✓ | ✓ |
+| @Relationship | | | | | | | ✓ |
+| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Sheet | | | ✓ | | | | |
+| navigationDestination | | | | ✓ | ✓ | | ✓ |
+| List | ✓ | | ✓ | | | ✓ | ✓ |
+| LazyVGrid | | | | ✓ | | | |
+| ScrollView | | | | ✓ | | | |
+| Implicit Animation | | ✓ | | | | | |
+| Explicit Animation | | ✓ | | | | | |
+| Transitions | | ✓ | | | | | |
+| DragGesture | | ✓ | | | | | |
+| UserDefaults | | | ✓ | | | | |
+| SwiftData | | | | | | ✓ | ✓ |
+| #Predicate | | | | | | | ✓ |
+| SortDescriptor | | | | | | | ✓ |
+| CloudKit | | | | | | | ✓ |
+| Codable | | | ✓ | ✓ | ✓ | | |
+| URLSession | | | | | ✓ | | |
+| async/await | | | | | ✓ | | |
+| AsyncImage | | | | | ✓ | | |
