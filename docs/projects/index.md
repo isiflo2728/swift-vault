@@ -1,6 +1,6 @@
 # Projects
 
-Six SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking and data persistence.
+Seven SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, and iCloud sync.
 
 ---
 
@@ -51,6 +51,14 @@ Six SwiftUI apps built from scratch while learning iOS development. Each one tar
   <h3>BookWorm</h3>
   <p>Book tracking app powered by SwiftData with a custom star-rating component.</p>
   <div class="card-concepts">SwiftData · @Query · @Binding</div>
+  <div class="card-cta">View Project →</div>
+</a>
+
+<a class="project-card" href="swiftdataproject/">
+  <div class="card-tag">swiftdata-project</div>
+  <h3>SwiftDataProject</h3>
+  <p>Deep dive into SwiftData — relationships, dynamic filtering, sorting, and iCloud sync via CloudKit.</p>
+  <div class="card-concepts">#Predicate · SortDescriptor · @Bindable · CloudKit</div>
   <div class="card-cta">View Project →</div>
 </a>
 

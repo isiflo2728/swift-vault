@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking + persistence stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, and iCloud sync stack — one project at a time.
 
 ---
 
@@ -84,19 +84,32 @@ Replaced UserDefaults with SwiftData — Apple's modern database layer. Built a 
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 7 — SwiftDataProject
+**Focus: SwiftData deep dive — relationships, dynamic queries, iCloud sync**
+
+Pushed SwiftData further by introducing model relationships, runtime-configurable filtering and sorting, and iCloud sync via CloudKit. The key architectural lesson was separating query logic into a dedicated child view with a custom initializer so that filter/sort config can be injected from a parent.
+
+**New concepts:** `@Relationship(deleteRule: .cascade)`, `#Predicate`, `SortDescriptor`, custom `@Query` `init` with `_users` underscore syntax, `@Bindable` for two-way bindings on `@Model` objects, programmatic `NavigationStack` with `path`, CloudKit capability setup, optional model properties for iCloud compatibility
+
+**The click:** The `_users` underscore syntax — reaching into the property wrapper itself to construct the `@Query` dynamically at init time. Also: CloudKit sync requires zero networking code — just the right capability and optional properties on your models.
+
+</div>
+
 </div>
 
 ---
 
 ## Cumulative Skill Map
 
-By the end of these 6 projects, the following areas are covered:
+By the end of these 7 projects, the following areas are covered:
 
 - [x] State management — `@State`, `@Binding`, `@Observable`
 - [x] Navigation — `NavigationStack`, multi-level drill-down, sheets
 - [x] Layouts — stacks, `List`, `LazyVGrid`, `ScrollView`
 - [x] Animations — implicit, explicit, transitions, gestures
-- [x] Persistence — `UserDefaults`, `SwiftData`
+- [x] Persistence — `UserDefaults`, `SwiftData`, `CloudKit`
 - [x] Networking — `URLSession`, `async/await`, `Codable`
 - [x] UIKit bridging — `UITextChecker`
 - [ ] Testing — unit tests, UI tests *(next)*

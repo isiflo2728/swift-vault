@@ -75,6 +75,7 @@ nav:
     - Moonshot: projects/moonshot.md
     - Cupcake Corner: projects/cupcake-corner.md
     - BookWorm: projects/bookworm.md
+    - SwiftDataProject: projects/swiftdataproject.md
   - Concepts:
     - concepts/index.md
     - State & Data Flow: concepts/state-data-flow.md
