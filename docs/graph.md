@@ -231,8 +231,8 @@
   // Main circle
   node.append("circle")
     .attr("r", radius)
-    .attr("fill", d => d.type === "project" ? "#FF5722" : "#1a3a4a")
-    .attr("stroke", d => d.type === "project" ? "#ff8a65" : "#4fc3f7")
+    .attr("fill", d => d.type === "project" ? "#FF5722" : "#4fc3f7")
+    .attr("stroke", d => d.type === "project" ? "#ff8a65" : "#b3e5fc")
     .attr("stroke-width", d => d.type === "project" ? 2 : 1.5);
 
   // Labels
@@ -240,7 +240,7 @@
     .text(d => d.id)
     .attr("x", d => radius(d) + 6)
     .attr("y", 4)
-    .attr("fill", d => d.type === "project" ? "#ff8a65" : "#b0d8f0")
+    .attr("fill", d => d.type === "project" ? "#ff8a65" : "#e0f7fa")
     .attr("font-size", d => d.type === "project" ? "12px" : "10.5px")
     .attr("font-family", "Inter, JetBrains Mono, monospace")
     .attr("font-weight", d => d.type === "project" ? "600" : "400");
