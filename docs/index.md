@@ -9,7 +9,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
 ## What's Inside
 
 === "Projects"
-    Seven real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
+    Eight real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
 
     | Project | Focus | Key Concepts |
     |---|---|---|
@@ -20,6 +20,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     | [Cupcake Corner](projects/cupcake-corner.md) | Ordering app | `URLSession`, `Codable`, `@Observable` |
     | [BookWorm](projects/bookworm.md) | Book tracker | `SwiftData`, `@Model`, custom components |
     | [SwiftDataProject](projects/swiftdataproject.md) | User & job manager | `#Predicate`, `SortDescriptor`, `@Bindable`, CloudKit |
+    | [InstaFilter](projects/instafilter.md) | Photo filter app | `CIFilter`, `PhotosPicker`, `ShareLink`, StoreKit |
 
 === "Concepts"
     Concepts extracted and linked across all projects so patterns become visible.
@@ -32,7 +33,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     - [Networking](concepts/networking.md) — `URLSession`, `async/await`, `Codable`
 
 === "Timeline"
-    [The full learning progression →](timeline.md) — from first `List` to full networking stack.
+    [The full learning progression →](timeline.md) — from first `List` to full Core Image pipeline.
 
 === "Knowledge Graph"
     [See how everything connects →](graph.md) — a visual map of concepts across projects.
