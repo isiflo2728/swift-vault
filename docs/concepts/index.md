@@ -10,4 +10,4 @@ Patterns and primitives extracted from across all projects. Each concept page sh
 | [Animations](animations.md) | AnimationTechnique | Implicit, explicit, transitions, gestures |
 | [Persistence](persistence.md) | iExpense, BookWorm, SwiftDataProject | UserDefaults, SwiftData, CloudKit |
 | [Networking](networking.md) | Cupcake Corner, InstaFilter | URLSession, async/await, Codable |
-| [Core Image](../projects/instafilter.md) | InstaFilter | CIFilter, CIContext, photo processing pipeline, PhotosPicker |
+| [Core Image](core-image.md) | InstaFilter | CIFilter, CIContext, photo processing pipeline, PhotosPicker |
