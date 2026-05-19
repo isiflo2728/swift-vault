@@ -90,7 +90,7 @@
     { id: "NavigationStack",    type: "concept", url: "../concepts/navigation/" },
     { id: "Sheet",              type: "concept", url: "../concepts/navigation/" },
     { id: "navigationDestination", type: "concept", url: "../concepts/navigation/" },
-    { id: "confirmationDialog", type: "concept", url: "../projects/instafilter/#filter-picker-with-confirmationdialog" },
+    { id: "confirmationDialog", type: "concept", url: "../concepts/navigation/" },
     { id: "List",               type: "concept", url: "../concepts/layouts-lists/" },
     { id: "LazyVGrid",          type: "concept", url: "../concepts/layouts-lists/" },
     { id: "ScrollView",         type: "concept", url: "../concepts/layouts-lists/" },
@@ -108,10 +108,10 @@
     { id: "Codable",            type: "concept", url: "../concepts/networking/" },
     { id: "async/await",        type: "concept", url: "../concepts/networking/" },
     { id: "AsyncImage",         type: "concept", url: "../concepts/networking/" },
-    { id: "CIFilter",           type: "concept", url: "../projects/instafilter/#the-image-pipeline" },
-    { id: "CIContext",          type: "concept", url: "../projects/instafilter/#the-image-pipeline" },
-    { id: "PhotosPicker",       type: "concept", url: "../projects/instafilter/#photospicker-importing-a-photo" },
-    { id: "ShareLink",          type: "concept", url: "../projects/instafilter/#sharing-the-processed-image" },
+    { id: "CIFilter",           type: "concept", url: "../concepts/core-image/" },
+    { id: "CIContext",          type: "concept", url: "../concepts/core-image/" },
+    { id: "PhotosPicker",       type: "concept", url: "../concepts/core-image/#photospicker" },
+    { id: "ShareLink",          type: "concept", url: "../concepts/core-image/#sharing-the-result" },
     { id: "StoreKit",           type: "concept", url: "../projects/instafilter/#swapping-filters-storekitt-review-prompt" },
   ];
 
@@ -219,7 +219,6 @@
     .attr("stroke", "#2e2e2e")
     .attr("stroke-width", 1.5);
 
-  // Track whether the pointer moved during a drag so we can tell click from drag
   let dragMoved = false;
 
   const node = g.append("g")
