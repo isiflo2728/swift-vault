@@ -5,8 +5,9 @@ Patterns and primitives extracted from across all projects. Each concept page sh
 | Concept | Projects | Summary |
 |---|---|---|
 | [State & Data Flow](state-data-flow.md) | All | How data moves through views and drives UI updates |
-| [Navigation](navigation.md) | WordScramble, Moonshot, iExpense, Cupcake Corner, BookWorm | Pushing views, sheets, covers, and multi-level drill-down |
-| [Layouts & Lists](layouts-lists.md) | WordScramble, Moonshot | Stacks, grids, and dynamic lists |
+| [Navigation](navigation.md) | WordScramble, Moonshot, iExpense, Cupcake Corner, BookWorm, SwiftDataProject, InstaFilter | Pushing views, sheets, covers, and multi-level drill-down |
+| [Layouts & Lists](layouts-lists.md) | WordScramble, iExpense, Moonshot, BookWorm, SwiftDataProject | Stacks, grids, and dynamic lists |
 | [Animations](animations.md) | AnimationTechnique | Implicit, explicit, transitions, gestures |
-| [Persistence](persistence.md) | iExpense, BookWorm | UserDefaults, SwiftData |
-| [Networking](networking.md) | Cupcake Corner | URLSession, async/await, Codable |
+| [Persistence](persistence.md) | iExpense, BookWorm, SwiftDataProject | UserDefaults, SwiftData, CloudKit |
+| [Networking](networking.md) | Cupcake Corner, InstaFilter | URLSession, async/await, Codable |
+| [Core Image](../projects/instafilter.md) | InstaFilter | CIFilter, CIContext, photo processing pipeline, PhotosPicker |
