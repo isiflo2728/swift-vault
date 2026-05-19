@@ -1,6 +1,6 @@
 # Projects
 
-Seven SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, and iCloud sync.
+Eight SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, and Core Image processing.
 
 ---
 
@@ -59,6 +59,14 @@ Seven SwiftUI apps built from scratch while learning iOS development. Each one t
   <h3>SwiftDataProject</h3>
   <p>Deep dive into SwiftData — relationships, dynamic filtering, sorting, and iCloud sync via CloudKit.</p>
   <div class="card-concepts">#Predicate · SortDescriptor · @Bindable · CloudKit</div>
+  <div class="card-cta">View Project →</div>
+</a>
+
+<a class="project-card" href="instafilter/">
+  <div class="card-tag">instafilter</div>
+  <h3>InstaFilter</h3>
+  <p>Photo filter app using Core Image. Import, filter, adjust intensity, and share.</p>
+  <div class="card-concepts">CIFilter · PhotosPicker · ShareLink · StoreKit</div>
   <div class="card-cta">View Project →</div>
 </a>
 
