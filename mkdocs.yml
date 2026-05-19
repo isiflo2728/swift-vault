@@ -85,6 +85,7 @@ nav:
     - Animations: concepts/animations.md
     - Persistence: concepts/persistence.md
     - Networking: concepts/networking.md
+    - Core Image: concepts/core-image.md
   - Timeline: timeline.md
   - Knowledge Graph: graph.md
 
