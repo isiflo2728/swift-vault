@@ -90,7 +90,7 @@
     { id: "NavigationStack",    type: "concept", url: "../concepts/navigation/" },
     { id: "Sheet",              type: "concept", url: "../concepts/navigation/" },
     { id: "navigationDestination", type: "concept", url: "../concepts/navigation/" },
-    { id: "confirmationDialog", type: "concept", url: "../projects/instafilter/" },
+    { id: "confirmationDialog", type: "concept", url: "../projects/instafilter/#filter-picker-with-confirmationdialog" },
     { id: "List",               type: "concept", url: "../concepts/layouts-lists/" },
     { id: "LazyVGrid",          type: "concept", url: "../concepts/layouts-lists/" },
     { id: "ScrollView",         type: "concept", url: "../concepts/layouts-lists/" },
@@ -108,11 +108,11 @@
     { id: "Codable",            type: "concept", url: "../concepts/networking/" },
     { id: "async/await",        type: "concept", url: "../concepts/networking/" },
     { id: "AsyncImage",         type: "concept", url: "../concepts/networking/" },
-    { id: "CIFilter",           type: "concept", url: "../projects/instafilter/" },
-    { id: "CIContext",          type: "concept", url: "../projects/instafilter/" },
-    { id: "PhotosPicker",       type: "concept", url: "../projects/instafilter/" },
-    { id: "ShareLink",          type: "concept", url: "../projects/instafilter/" },
-    { id: "StoreKit",           type: "concept", url: "../projects/instafilter/" },
+    { id: "CIFilter",           type: "concept", url: "../projects/instafilter/#the-image-pipeline" },
+    { id: "CIContext",          type: "concept", url: "../projects/instafilter/#the-image-pipeline" },
+    { id: "PhotosPicker",       type: "concept", url: "../projects/instafilter/#photospicker-importing-a-photo" },
+    { id: "ShareLink",          type: "concept", url: "../projects/instafilter/#sharing-the-processed-image" },
+    { id: "StoreKit",           type: "concept", url: "../projects/instafilter/#swapping-filters-storekitt-review-prompt" },
   ];
 
   const links = [
@@ -174,7 +174,6 @@
     { source: "InstaFilter", target: "confirmationDialog" },
   ];
 
-  // Degree map for sizing
   const degree = {};
   nodes.forEach(n => degree[n.id] = 0);
   links.forEach(l => { degree[l.source]++; degree[l.target]++; });
@@ -192,14 +191,12 @@
 
   const g = svg.append("g");
 
-  // Zoom
   svg.call(
     d3.zoom()
       .scaleExtent([0.25, 4])
       .on("zoom", e => g.attr("transform", e.transform))
   );
 
-  // Simulation
   const sim = d3.forceSimulation(nodes)
     .force("link", d3.forceLink(links).id(d => d.id).distance(d => {
       return d.source.type === "project" ? 110 : 90;
@@ -208,7 +205,6 @@
     .force("center", d3.forceCenter(W / 2, H / 2))
     .force("collision", d3.forceCollide().radius(d => radius(d) + 12));
 
-  // Glow filter
   const defs = svg.append("defs");
   const filter = defs.append("filter").attr("id", "glow");
   filter.append("feGaussianBlur").attr("stdDeviation", "3").attr("result", "blur");
@@ -216,7 +212,6 @@
   feMerge.append("feMergeNode").attr("in", "blur");
   feMerge.append("feMergeNode").attr("in", "SourceGraphic");
 
-  // Links
   const link = g.append("g")
     .selectAll("line")
     .data(links)
@@ -224,7 +219,9 @@
     .attr("stroke", "#2e2e2e")
     .attr("stroke-width", 1.5);
 
-  // Nodes
+  // Track whether the pointer moved during a drag so we can tell click from drag
+  let dragMoved = false;
+
   const node = g.append("g")
     .selectAll("g")
     .data(nodes)
@@ -232,12 +229,28 @@
     .style("cursor", "pointer")
     .call(
       d3.drag()
-        .on("start", (e, d) => { if (!e.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
-        .on("drag",  (e, d) => { d.fx = e.x; d.fy = e.y; })
-        .on("end",   (e, d) => { if (!e.active) sim.alphaTarget(0); d.fx = null; d.fy = null; })
+        .on("start", (e, d) => {
+          dragMoved = false;
+          if (!e.active) sim.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        })
+        .on("drag", (e, d) => {
+          dragMoved = true;
+          d.fx = e.x;
+          d.fy = e.y;
+        })
+        .on("end", (e, d) => {
+          if (!e.active) sim.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+          if (!dragMoved) {
+            window.location.href = d.url;
+          }
+          dragMoved = false;
+        })
     );
 
-  // Outer glow ring for projects
   node.filter(d => d.type === "project")
     .append("circle")
     .attr("r", d => radius(d) + 5)
@@ -247,14 +260,12 @@
     .attr("opacity", 0.25)
     .attr("filter", "url(#glow)");
 
-  // Main circle
   node.append("circle")
     .attr("r", radius)
     .attr("fill", d => d.type === "project" ? "#FF5722" : "#4fc3f7")
     .attr("stroke", d => d.type === "project" ? "#ff8a65" : "#b3e5fc")
     .attr("stroke-width", d => d.type === "project" ? 2 : 1.5);
 
-  // Labels
   node.append("text")
     .text(d => d.id)
     .attr("x", d => radius(d) + 6)
@@ -264,10 +275,8 @@
     .attr("font-family", "Inter, JetBrains Mono, monospace")
     .attr("font-weight", d => d.type === "project" ? "600" : "400");
 
-  // Tooltip
   const tooltip = d3.select("#graph-tooltip");
 
-  // Hover + click
   node
     .on("mouseover", function (event, d) {
       const connected = new Set([d.id]);
@@ -304,9 +313,6 @@
       node.selectAll("circle:first-of-type").attr("opacity", 0.25);
       link.attr("stroke", "#2e2e2e").attr("stroke-width", 1.5).attr("stroke-opacity", 1);
       tooltip.style("opacity", 0);
-    })
-    .on("click", (event, d) => {
-      window.location.href = d.url;
     });
 
   sim.on("tick", () => {
