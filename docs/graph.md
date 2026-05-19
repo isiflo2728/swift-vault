@@ -78,15 +78,19 @@
     { id: "Cupcake Corner",    type: "project", url: "../projects/cupcake-corner/" },
     { id: "BookWorm",          type: "project", url: "../projects/bookworm/" },
     { id: "SwiftDataProject",  type: "project", url: "../projects/swiftdataproject/" },
+    { id: "InstaFilter",       type: "project", url: "../projects/instafilter/" },
 
     { id: "@State",             type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Binding",           type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Observable",        type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Environment",       type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Query",             type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "@Bindable",          type: "concept", url: "../concepts/state-data-flow/" },
+    { id: "@AppStorage",        type: "concept", url: "../concepts/persistence/" },
     { id: "NavigationStack",    type: "concept", url: "../concepts/navigation/" },
     { id: "Sheet",              type: "concept", url: "../concepts/navigation/" },
     { id: "navigationDestination", type: "concept", url: "../concepts/navigation/" },
+    { id: "confirmationDialog", type: "concept", url: "../projects/instafilter/" },
     { id: "List",               type: "concept", url: "../concepts/layouts-lists/" },
     { id: "LazyVGrid",          type: "concept", url: "../concepts/layouts-lists/" },
     { id: "ScrollView",         type: "concept", url: "../concepts/layouts-lists/" },
@@ -96,15 +100,19 @@
     { id: "DragGesture",        type: "concept", url: "../concepts/animations/" },
     { id: "UserDefaults",       type: "concept", url: "../concepts/persistence/" },
     { id: "SwiftData",          type: "concept", url: "../concepts/persistence/" },
+    { id: "#Predicate",         type: "concept", url: "../concepts/persistence/" },
+    { id: "SortDescriptor",     type: "concept", url: "../concepts/persistence/" },
+    { id: "@Relationship",      type: "concept", url: "../concepts/persistence/" },
+    { id: "CloudKit",           type: "concept", url: "../concepts/persistence/" },
     { id: "URLSession",         type: "concept", url: "../concepts/networking/" },
     { id: "Codable",            type: "concept", url: "../concepts/networking/" },
     { id: "async/await",        type: "concept", url: "../concepts/networking/" },
     { id: "AsyncImage",         type: "concept", url: "../concepts/networking/" },
-    { id: "#Predicate",         type: "concept", url: "../concepts/persistence/" },
-    { id: "SortDescriptor",     type: "concept", url: "../concepts/persistence/" },
-    { id: "@Bindable",          type: "concept", url: "../concepts/state-data-flow/" },
-    { id: "CloudKit",           type: "concept", url: "../concepts/persistence/" },
-    { id: "@Relationship",      type: "concept", url: "../concepts/persistence/" },
+    { id: "CIFilter",           type: "concept", url: "../projects/instafilter/" },
+    { id: "CIContext",          type: "concept", url: "../projects/instafilter/" },
+    { id: "PhotosPicker",       type: "concept", url: "../projects/instafilter/" },
+    { id: "ShareLink",          type: "concept", url: "../projects/instafilter/" },
+    { id: "StoreKit",           type: "concept", url: "../projects/instafilter/" },
   ];
 
   const links = [
@@ -153,6 +161,17 @@
     { source: "SwiftDataProject", target: "navigationDestination" },
     { source: "SwiftDataProject", target: "CloudKit" },
     { source: "SwiftDataProject", target: "List" },
+
+    { source: "InstaFilter", target: "@State" },
+    { source: "InstaFilter", target: "@Environment" },
+    { source: "InstaFilter", target: "@AppStorage" },
+    { source: "InstaFilter", target: "async/await" },
+    { source: "InstaFilter", target: "CIFilter" },
+    { source: "InstaFilter", target: "CIContext" },
+    { source: "InstaFilter", target: "PhotosPicker" },
+    { source: "InstaFilter", target: "ShareLink" },
+    { source: "InstaFilter", target: "StoreKit" },
+    { source: "InstaFilter", target: "confirmationDialog" },
   ];
 
   // Degree map for sizing
@@ -303,31 +322,38 @@
 
 ## Concept Coverage by Project
 
-|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| @Binding | | | | | | ✓ | |
-| @Bindable | | | | | | | ✓ |
-| @Observable | | | ✓ | | ✓ | | |
-| @Environment | | | | | | ✓ | ✓ |
-| @Query | | | | | | ✓ | ✓ |
-| @Relationship | | | | | | | ✓ |
-| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Sheet | | | ✓ | | | | |
-| navigationDestination | | | | ✓ | ✓ | | ✓ |
-| List | ✓ | | ✓ | | | ✓ | ✓ |
-| LazyVGrid | | | | ✓ | | | |
-| ScrollView | | | | ✓ | | | |
-| Implicit Animation | | ✓ | | | | | |
-| Explicit Animation | | ✓ | | | | | |
-| Transitions | | ✓ | | | | | |
-| DragGesture | | ✓ | | | | | |
-| UserDefaults | | | ✓ | | | | |
-| SwiftData | | | | | | ✓ | ✓ |
-| #Predicate | | | | | | | ✓ |
-| SortDescriptor | | | | | | | ✓ |
-| CloudKit | | | | | | | ✓ |
-| Codable | | | ✓ | ✓ | ✓ | | |
-| URLSession | | | | | ✓ | | |
-| async/await | | | | | ✓ | | |
-| AsyncImage | | | | | ✓ | | |
+|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject | InstaFilter |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| @Binding | | | | | | ✓ | | |
+| @Bindable | | | | | | | ✓ | |
+| @Observable | | | ✓ | | ✓ | | | |
+| @Environment | | | | | | ✓ | ✓ | ✓ |
+| @Query | | | | | | ✓ | ✓ | |
+| @Relationship | | | | | | | ✓ | |
+| @AppStorage | | | | | | | | ✓ |
+| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| Sheet | | | ✓ | | | | | |
+| navigationDestination | | | | ✓ | ✓ | | ✓ | |
+| confirmationDialog | | | | | | | | ✓ |
+| List | ✓ | | ✓ | | | ✓ | ✓ | |
+| LazyVGrid | | | | ✓ | | | | |
+| ScrollView | | | | ✓ | | | | |
+| Implicit Animation | | ✓ | | | | | | |
+| Explicit Animation | | ✓ | | | | | | |
+| Transitions | | ✓ | | | | | | |
+| DragGesture | | ✓ | | | | | | |
+| UserDefaults | | | ✓ | | | | | |
+| SwiftData | | | | | | ✓ | ✓ | |
+| #Predicate | | | | | | | ✓ | |
+| SortDescriptor | | | | | | | ✓ | |
+| CloudKit | | | | | | | ✓ | |
+| Codable | | | ✓ | ✓ | ✓ | | | |
+| URLSession | | | | | ✓ | | | |
+| async/await | | | | | ✓ | | | ✓ |
+| AsyncImage | | | | | ✓ | | | |
+| CIFilter | | | | | | | | ✓ |
+| CIContext | | | | | | | | ✓ |
+| PhotosPicker | | | | | | | | ✓ |
+| ShareLink | | | | | | | | ✓ |
+| StoreKit | | | | | | | | ✓ |
