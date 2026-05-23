@@ -29,6 +29,7 @@ Every entry is written after the concept clicked. That means the explanations re
 | BookWorm | SwiftData — `@Model`, `@Query`, custom components |
 | SwiftDataProject | SwiftData deep dive — relationships, `#Predicate`, `SortDescriptor`, iCloud sync |
 | InstaFilter | Core Image — `CIFilter`, `CIContext`, `PhotosPicker`, `ShareLink`, StoreKit review prompts |
+| BucketList | MapKit — custom annotations, `MapReader`, Wikipedia API, Face ID / Touch ID |
 
 ## The Code
 
@@ -118,3 +119,5 @@ currentFilter.setValue(value, forKey: kCIInputIntensityKey)
 Skills are not given. They're built — one commit at a time.
 
 This vault exists to make that process visible. Not just the finished apps, but the understanding behind them. Every concept documented here is one that was earned.
+
+---
