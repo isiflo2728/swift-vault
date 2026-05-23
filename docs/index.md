@@ -9,7 +9,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
 ## What's Inside
 
 === "Projects"
-    Eight real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
+    Nine real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
 
     | Project | Focus | Key Concepts |
     |---|---|---|
@@ -21,6 +21,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     | [BookWorm](projects/bookworm.md) | Book tracker | `SwiftData`, `@Model`, custom components |
     | [SwiftDataProject](projects/swiftdataproject.md) | User & job manager | `#Predicate`, `SortDescriptor`, `@Bindable`, CloudKit |
     | [InstaFilter](projects/instafilter.md) | Photo filter app | `CIFilter`, `PhotosPicker`, `ShareLink`, StoreKit |
+    | [BucketList](projects/bucketlist.md) | Location bookmarks | `MapKit`, `MapReader`, `LocalAuthentication`, Wikipedia API |
 
 === "Concepts"
     Concepts extracted and linked across all projects so patterns become visible.
@@ -31,9 +32,11 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     - [Animations](concepts/animations.md) — implicit, explicit, transitions, `withAnimation`
     - [Persistence](concepts/persistence.md) — `UserDefaults`, `SwiftData`, `@Model`
     - [Networking](concepts/networking.md) — `URLSession`, `async/await`, `Codable`
+    - [Core Image](concepts/core-image.md) — `CIFilter`, `CIContext`, photo processing pipeline
+    - [Maps & Location](concepts/maps-location.md) — `MapKit`, `MapReader`, `Annotation`, coordinates
 
 === "Timeline"
-    [The full learning progression →](timeline.md) — from first `List` to full Core Image pipeline.
+    [The full learning progression →](timeline.md) — from first `List` to MapKit and biometric auth.
 
 === "Knowledge Graph"
     [See how everything connects →](graph.md) — a visual map of concepts across projects.
