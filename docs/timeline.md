@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking, persistence, and iCloud sync stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, and MapKit stack — one project at a time.
 
 ---
 
@@ -110,13 +110,28 @@ First project to touch media processing. The main challenge was understanding th
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 9 — BucketList
+**Focus: MapKit, location, and biometric authentication**
+
+First project involving maps and real-world coordinates. Covered the full MapKit SwiftUI integration — rendering a map, placing custom annotation views, and converting screen taps to geographic coordinates. Added live Wikipedia data fetching and locked everything behind Face ID / Touch ID.
+
+**New concepts:** `Map`, `MapReader`, `Annotation`, `CLLocationCoordinate2D`, `MKCoordinateRegion`, `MapCameraPosition`, `proxy.convert(_:from:)`, `LocalAuthentication`, `LAContext`, `sheet(item:)` with optional binding, `@Observable` MVVM via `ContentView` extension, `Comparable` conformance, custom `Equatable` `==`
+
+**The click:** `sheet(item:)` with an optional — one property drives both whether the sheet is shown and what data it receives. SwiftUI unwraps the optional automatically inside the closure. Cleaner than a separate Bool + separate data property.
+
+Also: long press gestures on `Map` annotation views conflict with the map's internal gesture recognizers on real devices (system gate timeout). Using `.onTapGesture` on the annotation view fixes it because the annotation intercepts the tap before the map sees it.
+
+</div>
+
 </div>
 
 ---
 
 ## Cumulative Skill Map
 
-By the end of these 8 projects, the following areas are covered:
+By the end of these 9 projects, the following areas are covered:
 
 - [x] State management — `@State`, `@Binding`, `@Observable`, `@AppStorage`
 - [x] Navigation — `NavigationStack`, multi-level drill-down, sheets
@@ -126,7 +141,8 @@ By the end of these 8 projects, the following areas are covered:
 - [x] Networking — `URLSession`, `async/await`, `Codable`
 - [x] UIKit bridging — `UITextChecker`
 - [x] Core Image — `CIFilter`, `CIContext`, photo processing pipeline
+- [x] Location & Maps — `MapKit`, `CLLocationCoordinate2D`, `MapReader`, custom annotations
+- [x] Biometric auth — `LocalAuthentication`, `LAContext`, Face ID / Touch ID
 - [ ] Testing — unit tests, UI tests *(next)*
 - [ ] Custom drawing — `Canvas`, `Path`, `Shape`
-- [ ] Location & Maps — `CoreLocation`, `MapKit`
 - [ ] Notifications — `UserNotifications`
