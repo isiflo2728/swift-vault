@@ -77,6 +77,7 @@ nav:
     - BookWorm: projects/bookworm.md
     - SwiftDataProject: projects/swiftdataproject.md
     - InstaFilter: projects/instafilter.md
+    - BucketList: projects/bucketlist.md
   - Concepts:
     - concepts/index.md
     - State & Data Flow: concepts/state-data-flow.md
