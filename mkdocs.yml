@@ -87,6 +87,7 @@ nav:
     - Persistence: concepts/persistence.md
     - Networking: concepts/networking.md
     - Core Image: concepts/core-image.md
+    - Maps & Location: concepts/maps-location.md
   - Timeline: timeline.md
   - Knowledge Graph: graph.md
 
