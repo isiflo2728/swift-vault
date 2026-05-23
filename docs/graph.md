@@ -79,6 +79,7 @@
     { id: "BookWorm",          type: "project", url: "../projects/bookworm/" },
     { id: "SwiftDataProject",  type: "project", url: "../projects/swiftdataproject/" },
     { id: "InstaFilter",       type: "project", url: "../projects/instafilter/" },
+    { id: "BucketList",        type: "project", url: "../projects/bucketlist/" },
 
     { id: "@State",             type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Binding",           type: "concept", url: "../concepts/state-data-flow/" },
@@ -113,6 +114,11 @@
     { id: "PhotosPicker",       type: "concept", url: "../concepts/core-image/#photospicker" },
     { id: "ShareLink",          type: "concept", url: "../concepts/core-image/#sharing-the-result" },
     { id: "StoreKit",           type: "concept", url: "../projects/instafilter/#swapping-filters-storekitt-review-prompt" },
+    { id: "MapKit",             type: "concept", url: "../concepts/maps-location/" },
+    { id: "MapReader",          type: "concept", url: "../concepts/maps-location/" },
+    { id: "Annotation",         type: "concept", url: "../concepts/maps-location/" },
+    { id: "LocalAuthentication",type: "concept", url: "../concepts/maps-location/" },
+    { id: "Equatable",          type: "concept", url: "../concepts/state-data-flow/" },
   ];
 
   const links = [
@@ -172,6 +178,19 @@
     { source: "InstaFilter", target: "ShareLink" },
     { source: "InstaFilter", target: "StoreKit" },
     { source: "InstaFilter", target: "confirmationDialog" },
+
+    { source: "BucketList", target: "@Observable" },
+    { source: "BucketList", target: "@State" },
+    { source: "BucketList", target: "Sheet" },
+    { source: "BucketList", target: "URLSession" },
+    { source: "BucketList", target: "Codable" },
+    { source: "BucketList", target: "async/await" },
+    { source: "BucketList", target: "MapKit" },
+    { source: "BucketList", target: "MapReader" },
+    { source: "BucketList", target: "Annotation" },
+    { source: "BucketList", target: "LocalAuthentication" },
+    { source: "BucketList", target: "Equatable" },
+    { source: "BucketList", target: "@Environment" },
   ];
 
   const degree = {};
@@ -327,38 +346,43 @@
 
 ## Concept Coverage by Project
 
-|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject | InstaFilter |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| @Binding | | | | | | ✓ | | |
-| @Bindable | | | | | | | ✓ | |
-| @Observable | | | ✓ | | ✓ | | | |
-| @Environment | | | | | | ✓ | ✓ | ✓ |
-| @Query | | | | | | ✓ | ✓ | |
-| @Relationship | | | | | | | ✓ | |
-| @AppStorage | | | | | | | | ✓ |
-| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
-| Sheet | | | ✓ | | | | | |
-| navigationDestination | | | | ✓ | ✓ | | ✓ | |
-| confirmationDialog | | | | | | | | ✓ |
-| List | ✓ | | ✓ | | | ✓ | ✓ | |
-| LazyVGrid | | | | ✓ | | | | |
-| ScrollView | | | | ✓ | | | | |
-| Implicit Animation | | ✓ | | | | | | |
-| Explicit Animation | | ✓ | | | | | | |
-| Transitions | | ✓ | | | | | | |
-| DragGesture | | ✓ | | | | | | |
-| UserDefaults | | | ✓ | | | | | |
-| SwiftData | | | | | | ✓ | ✓ | |
-| #Predicate | | | | | | | ✓ | |
-| SortDescriptor | | | | | | | ✓ | |
-| CloudKit | | | | | | | ✓ | |
-| Codable | | | ✓ | ✓ | ✓ | | | |
-| URLSession | | | | | ✓ | | | |
-| async/await | | | | | ✓ | | | ✓ |
-| AsyncImage | | | | | ✓ | | | |
-| CIFilter | | | | | | | | ✓ |
-| CIContext | | | | | | | | ✓ |
-| PhotosPicker | | | | | | | | ✓ |
-| ShareLink | | | | | | | | ✓ |
-| StoreKit | | | | | | | | ✓ |
+|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject | InstaFilter | BucketList |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ |
+| @Binding | | | | | | ✓ | | | |
+| @Bindable | | | | | | | ✓ | | |
+| @Observable | | | ✓ | | ✓ | | | | ✓ |
+| @Environment | | | | | | ✓ | ✓ | ✓ | ✓ |
+| @Query | | | | | | ✓ | ✓ | | |
+| @Relationship | | | | | | | ✓ | | |
+| @AppStorage | | | | | | | | ✓ | |
+| Equatable | | | | | | | | | ✓ |
+| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | |
+| Sheet | | | ✓ | | | | | | ✓ |
+| navigationDestination | | | | ✓ | ✓ | | ✓ | | |
+| confirmationDialog | | | | | | | | ✓ | |
+| List | ✓ | | ✓ | | | ✓ | ✓ | | |
+| LazyVGrid | | | | ✓ | | | | | |
+| ScrollView | | | | ✓ | | | | | |
+| Implicit Animation | | ✓ | | | | | | | |
+| Explicit Animation | | ✓ | | | | | | | |
+| Transitions | | ✓ | | | | | | | |
+| DragGesture | | ✓ | | | | | | | |
+| UserDefaults | | | ✓ | | | | | | |
+| SwiftData | | | | | | ✓ | ✓ | | |
+| #Predicate | | | | | | | ✓ | | |
+| SortDescriptor | | | | | | | ✓ | | |
+| CloudKit | | | | | | | ✓ | | |
+| Codable | | | ✓ | ✓ | ✓ | | | | ✓ |
+| URLSession | | | | | ✓ | | | | ✓ |
+| async/await | | | | | ✓ | | | ✓ | ✓ |
+| AsyncImage | | | | | ✓ | | | | |
+| CIFilter | | | | | | | | ✓ | |
+| CIContext | | | | | | | | ✓ | |
+| PhotosPicker | | | | | | | | ✓ | |
+| ShareLink | | | | | | | | ✓ | |
+| StoreKit | | | | | | | | ✓ | |
+| MapKit | | | | | | | | | ✓ |
+| MapReader | | | | | | | | | ✓ |
+| Annotation | | | | | | | | | ✓ |
+| LocalAuthentication | | | | | | | | | ✓ |
