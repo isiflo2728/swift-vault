@@ -78,6 +78,7 @@ nav:
     - SwiftDataProject: projects/swiftdataproject.md
     - InstaFilter: projects/instafilter.md
     - BucketList: projects/bucketlist.md
+    - AccessibilitySandbox: projects/accessibility-sandbox.md
   - Concepts:
     - concepts/index.md
     - State & Data Flow: concepts/state-data-flow.md
@@ -88,6 +89,7 @@ nav:
     - Networking: concepts/networking.md
     - Core Image: concepts/core-image.md
     - Maps & Location: concepts/maps-location.md
+    - Accessibility: concepts/accessibility.md
   - Timeline: timeline.md
   - Knowledge Graph: graph.md
 
