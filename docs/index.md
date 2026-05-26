@@ -9,7 +9,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
 ## What's Inside
 
 === "Projects"
-    Nine real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
+    Ten real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
 
     | Project | Focus | Key Concepts |
     |---|---|---|
@@ -22,6 +22,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     | [SwiftDataProject](projects/swiftdataproject.md) | User & job manager | `#Predicate`, `SortDescriptor`, `@Bindable`, CloudKit |
     | [InstaFilter](projects/instafilter.md) | Photo filter app | `CIFilter`, `PhotosPicker`, `ShareLink`, StoreKit |
     | [BucketList](projects/bucketlist.md) | Location bookmarks | `MapKit`, `MapReader`, `LocalAuthentication`, Wikipedia API |
+    | [AccessibilitySandbox](projects/accessibility-sandbox.md) | Accessibility APIs | VoiceOver, Voice Control, `.accessibilityElement`, adjustable actions |
 
 === "Concepts"
     Concepts extracted and linked across all projects so patterns become visible.
@@ -34,9 +35,10 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     - [Networking](concepts/networking.md) — `URLSession`, `async/await`, `Codable`
     - [Core Image](concepts/core-image.md) — `CIFilter`, `CIContext`, photo processing pipeline
     - [Maps & Location](concepts/maps-location.md) — `MapKit`, `MapReader`, `Annotation`, coordinates
+    - [Accessibility](concepts/accessibility.md) — VoiceOver, Voice Control, traits, grouping, adjustable actions
 
 === "Timeline"
-    [The full learning progression →](timeline.md) — from first `List` to MapKit and biometric auth.
+    [The full learning progression →](timeline.md) — from first `List` to MapKit, biometric auth, and accessibility.
 
 === "Knowledge Graph"
     [See how everything connects →](graph.md) — a visual map of concepts across projects.
