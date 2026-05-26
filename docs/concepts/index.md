@@ -12,3 +12,4 @@ Patterns and primitives extracted from across all projects. Each concept page sh
 | [Networking](networking.md) | Cupcake Corner, InstaFilter, BucketList | URLSession, async/await, Codable |
 | [Core Image](core-image.md) | InstaFilter | CIFilter, CIContext, photo processing pipeline, PhotosPicker |
 | [Maps & Location](maps-location.md) | BucketList | MapKit, MapReader, Annotation, coordinates, biometric auth |
+| [Accessibility](accessibility.md) | AccessibilitySandbox | VoiceOver labels, grouping, traits, adjustable actions, Voice Control |
