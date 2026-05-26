@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, and MapKit stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, and accessibility stack — one project at a time.
 
 ---
 
@@ -125,13 +125,28 @@ Also: long press gestures on `Map` annotation views conflict with the map's inte
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 10 — AccessibilitySandbox
+**Focus: VoiceOver, Voice Control, and the UIAccessibility API**
+
+A dedicated sandbox for iOS accessibility — the two systems every shipped app needs to support: VoiceOver (screen reader for blind/low-vision users) and Voice Control (speech commands for motor-impaired users). Each experiment isolated one modifier so the behavior could be verified directly with VoiceOver or Voice Control enabled.
+
+**New concepts:** `.accessibilityLabel`, `.accessibilityHint`, `.accessibilityHidden`, `Image(decorative:)`, `.accessibilityElement(children: .combine/.ignore)`, `.accessibilityAddTraits`, `.accessibilityRemoveTraits`, `.accessibilityValue`, `.accessibilityAdjustableAction`, `.accessibilityInputLabels`
+
+**The click:** The `.combine` vs `.ignore` distinction on `.accessibilityElement` — `.combine` keeps children readable but separate (VoiceOver pauses between them); `.ignore` collapses everything under one parent label that you write yourself. Getting this wrong either over-reads or silently skips content.
+
+Also: VoiceOver and Voice Control are completely separate systems. `.accessibilityInputLabels` only helps Voice Control users — it has zero effect on VoiceOver. They require different testing approaches: VoiceOver with swipe navigation, Voice Control with spoken commands.
+
+</div>
+
 </div>
 
 ---
 
 ## Cumulative Skill Map
 
-By the end of these 9 projects, the following areas are covered:
+By the end of these 10 projects, the following areas are covered:
 
 - [x] State management — `@State`, `@Binding`, `@Observable`, `@AppStorage`
 - [x] Navigation — `NavigationStack`, multi-level drill-down, sheets
@@ -143,6 +158,7 @@ By the end of these 9 projects, the following areas are covered:
 - [x] Core Image — `CIFilter`, `CIContext`, photo processing pipeline
 - [x] Location & Maps — `MapKit`, `CLLocationCoordinate2D`, `MapReader`, custom annotations
 - [x] Biometric auth — `LocalAuthentication`, `LAContext`, Face ID / Touch ID
+- [x] Accessibility — VoiceOver, Voice Control, traits, grouping, adjustable actions
 - [ ] Testing — unit tests, UI tests *(next)*
 - [ ] Custom drawing — `Canvas`, `Path`, `Shape`
 - [ ] Notifications — `UserNotifications`
