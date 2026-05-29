@@ -2,7 +2,7 @@
 
 > Moving between views — pushing onto a stack, presenting sheets, and multi-level drill-down.
 
-**Appears in:** WordScramble · Moonshot · iExpense · Cupcake Corner · BookWorm
+**Appears in:** WordScramble · Moonshot · iExpense · Cupcake Corner · BookWorm · HotProspects
 
 ---
 
@@ -117,6 +117,51 @@ NavigationStack {
 
 ---
 
+## TabView
+
+A tab bar at the bottom of the screen. Each child is a separate tab.
+
+```swift
+TabView {
+    ProspectsView(filter: .none)
+        .tabItem {
+            Label("Everyone", systemImage: "person.3")
+        }
+    ProspectsView(filter: .contacted)
+        .tabItem {
+            Label("Contacted", systemImage: "checkmark.circle")
+        }
+    MeView()
+        .tabItem {
+            Label("Me", systemImage: "person.crop.square")
+        }
+}
+```
+
+!!! tip "TabView wraps NavigationStack — not the other way around"
+    `TabView` should be the outermost container. Each tab can have its own `NavigationStack` inside. If you put `TabView` *inside* a `NavigationStack`, the tab bar gets buried under the navigation chrome.
+
+### Programmatic tab switching
+
+Tag each tab and bind the selection:
+
+```swift
+@State private var selectedTab = "everyone"
+
+TabView(selection: $selectedTab) {
+    SomeView()
+        .tabItem { Label("Everyone", systemImage: "person.3") }
+        .tag("everyone")
+    OtherView()
+        .tabItem { Label("Me", systemImage: "person.crop.square") }
+        .tag("me")
+}
+```
+
+Setting `selectedTab = "me"` from anywhere switches to that tab.
+
+---
+
 ## Quick Reference
 
 | Need | Solution |
@@ -127,3 +172,4 @@ NavigationStack {
 | Dismiss from inside sheet | `@Environment(\.dismiss)` |
 | Nav bar buttons | `.toolbar { ToolbarItem(placement:) }` |
 | Editable list | `.toolbar { EditButton() }` |
+| Tab bar layout | `TabView` with `.tabItem` |

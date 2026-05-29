@@ -2,7 +2,7 @@
 
 > Keeping data alive between app launches — from a simple key-value store to a full relational database.
 
-**Appears in:** iExpense (UserDefaults) · BookWorm (SwiftData)
+**Appears in:** iExpense (UserDefaults) · BookWorm (SwiftData) · HotProspects (SwiftData + @AppStorage)
 
 ---
 

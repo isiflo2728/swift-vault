@@ -2,7 +2,7 @@
 
 > Processing photos with filters — converting between image types, applying Core Image effects, and piping the result back into SwiftUI.
 
-**Appears in:** InstaFilter
+**Appears in:** InstaFilter · HotProspects (QR code generation)
 
 ---
 

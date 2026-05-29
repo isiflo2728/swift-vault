@@ -29,12 +29,12 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     Concepts extracted and linked across all projects so patterns become visible.
 
     - [State & Data Flow](concepts/state-data-flow.md) — `@State`, `@Binding`, `@Observable`, `@Environment`
-    - [Navigation](concepts/navigation.md) — `NavigationStack`, drill-down, sheets, full-screen covers
-    - [Layouts & Lists](concepts/layouts-lists.md) — `VStack`, `LazyVGrid`, `List`, custom rows
+    - [Navigation](concepts/navigation.md) — `NavigationStack`, `TabView`, drill-down, sheets, full-screen covers
+    - [Layouts & Lists](concepts/layouts-lists.md) — `VStack`, `LazyVGrid`, `List`, swipe actions, multi-select
     - [Animations](concepts/animations.md) — implicit, explicit, transitions, `withAnimation`
-    - [Persistence](concepts/persistence.md) — `UserDefaults`, `SwiftData`, `@Model`
+    - [Persistence](concepts/persistence.md) — `UserDefaults`, `SwiftData`, `@Model`, `@AppStorage`
     - [Networking](concepts/networking.md) — `URLSession`, `async/await`, `Codable`
-    - [Core Image](concepts/core-image.md) — `CIFilter`, `CIContext`, photo processing pipeline
+    - [Core Image](concepts/core-image.md) — `CIFilter`, `CIContext`, photo processing pipeline, QR code generation
     - [Maps & Location](concepts/maps-location.md) — `MapKit`, `MapReader`, `Annotation`, coordinates
     - [Accessibility](concepts/accessibility.md) — VoiceOver, Voice Control, traits, grouping, adjustable actions
 

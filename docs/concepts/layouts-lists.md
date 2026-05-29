@@ -2,7 +2,7 @@
 
 > Arranging views on screen — from simple stacks to adaptive grids and dynamic data-driven lists.
 
-**Appears in:** WordScramble · Moonshot · iExpense · BookWorm
+**Appears in:** WordScramble · Moonshot · iExpense · BookWorm · HotProspects
 
 ---
 
@@ -123,6 +123,53 @@ GeometryReader { geometry in
 
 ---
 
+## Swipe Actions
+
+Per-row buttons that appear when the user swipes. Added directly to the row content, not to `List` or `ForEach`.
+
+```swift
+List(prospects) { prospect in
+    ProspectRow(prospect: prospect)
+        .swipeActions {
+            Button("Delete", systemImage: "trash", role: .destructive) {
+                modelContext.delete(prospect)
+            }
+        }
+        .swipeActions(edge: .leading) {
+            Button("Pin", systemImage: "pin") {
+                prospect.isPinned.toggle()
+            }
+            .tint(.orange)
+        }
+}
+```
+
+- Default edge is `.trailing` (swipe left)
+- Use `edge: .leading` for swipe right
+- `role: .destructive` makes the button red automatically
+- Use `.tint()` to set custom colors on non-destructive buttons
+
+---
+
+## Multi-select List
+
+Enable row selection with a `Set` binding and `EditButton`:
+
+```swift
+@State private var selectedItems = Set<MyModel>()
+
+List(items, selection: $selectedItems) { item in
+    Text(item.name)
+}
+.toolbar {
+    ToolbarItem(placement: .topBarLeading) { EditButton() }
+}
+```
+
+When `EditButton` activates edit mode, checkboxes appear on each row. The selected items accumulate in `selectedItems`. Use `.safeAreaInset(edge: .bottom)` for a bulk-action button — not `.bottomBar` in a toolbar, which conflicts with `TabView`.
+
+---
+
 ## Quick Reference
 
 | Need | Use |
@@ -130,6 +177,8 @@ GeometryReader { geometry in
 | Simple vertical/horizontal layout | `VStack` / `HStack` |
 | Overlay views on top of each other | `ZStack` |
 | Scrollable list with swipe/edit | `List` + `ForEach` |
+| Per-row swipe buttons | `.swipeActions` |
+| Multi-select rows | `List(selection:)` + `EditButton` |
 | Image or card grid | `LazyVGrid` with `.adaptive` |
 | Scroll without List chrome | `ScrollView` |
 | Measure parent size | `GeometryReader` |
