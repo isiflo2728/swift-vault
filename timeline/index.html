@@ -1,0 +1,1745 @@
+<!DOCTYPE html><html lang="en" class="no-js"><head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="A living knowledge vault — every SwiftUI project, concept, and lesson learned while building real iOS apps from scratch.">
+      
+      
+        <meta name="author" content="Isidoro Flores">
+      
+      
+        <link rel="canonical" href="https://isiflo2728.github.io/swift-vault/timeline/">
+      
+      
+        <link rel="prev" href="../concepts/accessibility/">
+      
+      
+        <link rel="next" href="../graph/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="https://developer.apple.com/favicon.ico">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Timeline - Mastering SwiftUI</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  <link href="../assets/stylesheets/glightbox.min.css" rel="stylesheet"><script src="../assets/javascripts/glightbox.min.js"></script><style id="glightbox-style">
+            html.glightbox-open { overflow: initial; height: 100%; }
+            .gslide-title { margin-top: 0px; user-select: text; }
+            .gslide-desc { color: #666; user-select: text; }
+            .gslide-image img { background: white; }
+            .gscrollbar-fixer { padding-right: 15px; }
+            .gdesc-inner { font-size: 0.75rem; }
+            body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color); }
+            body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color); }
+            body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color); }
+        </style></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#learning-timeline" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Mastering SwiftUI" class="md-header__button md-logo" aria-label="Mastering SwiftUI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.508 0q-.43 0-.86.002-.362.001-.724.01-.198.005-.395.015A9 9 0 0 0 4.348.15 5.5 5.5 0 0 0 2.85.645 5.04 5.04 0 0 0 .645 2.848c-.245.48-.4.972-.495 1.5-.093.52-.122 1.05-.136 1.576a35 35 0 0 0-.012.724Q0 7.078 0 7.508v8.984q0 .431.002.862.002.36.012.722c.014.526.043 1.057.136 1.576.095.528.25 1.02.495 1.5a5.03 5.03 0 0 0 2.205 2.203c.48.244.97.4 1.498.495.52.093 1.05.124 1.576.138q.362.01.724.01.43.003.86.002h8.984q.43 0 .86-.002.362 0 .724-.01a10.5 10.5 0 0 0 1.578-.138 5.3 5.3 0 0 0 1.498-.495 5.04 5.04 0 0 0 2.203-2.203c.245-.48.4-.972.495-1.5.093-.52.124-1.05.138-1.576q.01-.361.01-.722.003-.431.002-.862V7.508q0-.43-.002-.86a34 34 0 0 0-.01-.724 10.5 10.5 0 0 0-.138-1.576 5.3 5.3 0 0 0-.495-1.5A5.04 5.04 0 0 0 21.152.645 5.3 5.3 0 0 0 19.654.15a10.5 10.5 0 0 0-1.578-.138 35 35 0 0 0-.722-.01Q16.923 0 16.492 0zm6.035 3.41c4.114 2.47 6.545 7.162 5.549 11.131-.024.093-.05.181-.076.272l.002.001c2.062 2.538 1.5 5.258 1.236 4.745-1.072-2.086-3.066-1.568-4.088-1.043a7 7 0 0 1-.281.158l-.02.012-.002.002c-2.115 1.123-4.957 1.205-7.812-.022a12.57 12.57 0 0 1-5.64-4.838c.649.48 1.35.902 2.097 1.252 3.019 1.414 6.051 1.311 8.197-.002C9.651 12.73 7.101 9.67 5.146 7.191a10.6 10.6 0 0 1-1.005-1.384c2.34 2.142 6.038 4.83 7.365 5.576C8.69 8.408 6.208 4.743 6.324 4.86c4.436 4.47 8.528 6.996 8.528 6.996.154.085.27.154.36.213q.128-.322.224-.668c.708-2.588-.09-5.548-1.893-7.992z"></path></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"></path></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Mastering SwiftUI
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Timeline
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="black" data-md-color-accent="deep-orange" aria-hidden="true" type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required="">
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"></path></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"></path></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard="" data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"></path></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix="">
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/isiflo2728/mastering-swift-ui" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    isiflo2728/mastering-swift-ui
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../projects/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Projects
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../concepts/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Concepts
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Timeline
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../graph/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Knowledge Graph
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Mastering SwiftUI" class="md-nav__button md-logo" aria-label="Mastering SwiftUI" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M7.508 0q-.43 0-.86.002-.362.001-.724.01-.198.005-.395.015A9 9 0 0 0 4.348.15 5.5 5.5 0 0 0 2.85.645 5.04 5.04 0 0 0 .645 2.848c-.245.48-.4.972-.495 1.5-.093.52-.122 1.05-.136 1.576a35 35 0 0 0-.012.724Q0 7.078 0 7.508v8.984q0 .431.002.862.002.36.012.722c.014.526.043 1.057.136 1.576.095.528.25 1.02.495 1.5a5.03 5.03 0 0 0 2.205 2.203c.48.244.97.4 1.498.495.52.093 1.05.124 1.576.138q.362.01.724.01.43.003.86.002h8.984q.43 0 .86-.002.362 0 .724-.01a10.5 10.5 0 0 0 1.578-.138 5.3 5.3 0 0 0 1.498-.495 5.04 5.04 0 0 0 2.203-2.203c.245-.48.4-.972.495-1.5.093-.52.124-1.05.138-1.576q.01-.361.01-.722.003-.431.002-.862V7.508q0-.43-.002-.86a34 34 0 0 0-.01-.724 10.5 10.5 0 0 0-.138-1.576 5.3 5.3 0 0 0-.495-1.5A5.04 5.04 0 0 0 21.152.645 5.3 5.3 0 0 0 19.654.15a10.5 10.5 0 0 0-1.578-.138 35 35 0 0 0-.722-.01Q16.923 0 16.492 0zm6.035 3.41c4.114 2.47 6.545 7.162 5.549 11.131-.024.093-.05.181-.076.272l.002.001c2.062 2.538 1.5 5.258 1.236 4.745-1.072-2.086-3.066-1.568-4.088-1.043a7 7 0 0 1-.281.158l-.02.012-.002.002c-2.115 1.123-4.957 1.205-7.812-.022a12.57 12.57 0 0 1-5.64-4.838c.649.48 1.35.902 2.097 1.252 3.019 1.414 6.051 1.311 8.197-.002C9.651 12.73 7.101 9.67 5.146 7.191a10.6 10.6 0 0 1-1.005-1.384c2.34 2.142 6.038 4.83 7.365 5.576C8.69 8.408 6.208 4.743 6.324 4.86c4.436 4.47 8.528 6.996 8.528 6.996.154.085.27.154.36.213q.128-.322.224-.668c.708-2.588-.09-5.548-1.893-7.992z"></path></svg>
+
+    </a>
+    Mastering SwiftUI
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/isiflo2728/mastering-swift-ui" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+  </div>
+  <div class="md-source__repository">
+    isiflo2728/mastering-swift-ui
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix="">
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../projects/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Projects
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Projects
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/wordscramble/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    WordScramble
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/animation-technique/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AnimationTechnique
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/iexpense/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    iExpense
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/moonshot/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Moonshot
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/cupcake-corner/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cupcake Corner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/bookworm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BookWorm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/swiftdataproject/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SwiftDataProject
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/instafilter/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    InstaFilter
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/bucketlist/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    BucketList
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/accessibility-sandbox/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AccessibilitySandbox
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../projects/hot-prospects/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    HotProspects
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3">
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../concepts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Concepts
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Concepts
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix="">
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/state-data-flow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    State &amp; Data Flow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/navigation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Navigation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/layouts-lists/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Layouts &amp; Lists
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/animations/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Animations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/persistence/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Persistence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/networking/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Networking
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/core-image/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core Image
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/maps-location/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Maps &amp; Location
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../concepts/accessibility/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Accessibility
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timeline
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Timeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#project-1-wordscramble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 1 — WordScramble
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-2-animationtechnique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 2 — AnimationTechnique
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-3-iexpense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 3 — iExpense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-4-moonshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 4 — Moonshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-5-cupcake-corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 5 — Cupcake Corner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-6-bookworm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 6 — BookWorm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-7-swiftdataproject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 7 — SwiftDataProject
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-8-instafilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 8 — InstaFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-9-bucketlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 9 — BucketList
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-10-accessibilitysandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 10 — AccessibilitySandbox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-11-hotprospects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 11 — HotProspects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cumulative-skill-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cumulative Skill Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../graph/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge Graph
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix="">
+      
+        <li class="md-nav__item">
+  <a href="#project-1-wordscramble" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 1 — WordScramble
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-2-animationtechnique" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 2 — AnimationTechnique
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-3-iexpense" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 3 — iExpense
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-4-moonshot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 4 — Moonshot
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-5-cupcake-corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 5 — Cupcake Corner
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-6-bookworm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 6 — BookWorm
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-7-swiftdataproject" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 7 — SwiftDataProject
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-8-instafilter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 8 — InstaFilter
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-9-bucketlist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 9 — BucketList
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-10-accessibilitysandbox" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 10 — AccessibilitySandbox
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-11-hotprospects" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Project 11 — HotProspects
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cumulative-skill-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cumulative Skill Map
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="learning-timeline">Learning Timeline<a class="headerlink" href="#learning-timeline" title="Permanent link">¶</a></h1>
+<blockquote>
+<p>The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, and local notifications stack — one project at a time.</p>
+</blockquote>
+<hr>
+<div class="timeline">
+<div class="timeline-item">
+<h2 id="project-1-wordscramble">Project 1 — WordScramble<a class="headerlink" href="#project-1-wordscramble" title="Permanent link">¶</a></h2>
+<p><strong>Focus: Core SwiftUI primitives</strong></p>
+<p>First real app. The goal was simple — build something functional — but it introduced the most foundational SwiftUI patterns: state driving UI, <code>List</code> with dynamic data, and bridging UIKit (UITextChecker) into a SwiftUI view.</p>
+<p><strong>New concepts:</strong> <code>@State</code>, <code>List</code>, <code>TextField</code>, <code>onSubmit</code>, <code>onAppear</code>, <code>Bundle</code> resource loading, <code>UITextChecker</code></p>
+<p><strong>The click:</strong> Realizing that SwiftUI views are just functions of state — change <code>usedWords</code> and the <code>List</code> updates automatically. No reload needed.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-2-animationtechnique">Project 2 — AnimationTechnique<a class="headerlink" href="#project-2-animationtechnique" title="Permanent link">¶</a></h2>
+<p><strong>Focus: Motion and interactivity</strong></p>
+<p>A dedicated sandbox for SwiftUI's animation system. Built purely to develop muscle memory around <code>withAnimation</code>, <code>.animation(_:value:)</code>, and transitions before using them in real features.</p>
+<p><strong>New concepts:</strong> Implicit vs explicit animations, <code>withAnimation</code>, <code>.transition()</code>, <code>AnyTransition</code>, spring curves, <code>DragGesture</code>, <code>rotation3DEffect</code></p>
+<p><strong>The click:</strong> The difference between implicit (always) and explicit (I decide) animation — and why implicit needs <code>value:</code> bound or it fires on everything.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-3-iexpense">Project 3 — iExpense<a class="headerlink" href="#project-3-iexpense" title="Permanent link">¶</a></h2>
+<p><strong>Focus: Shared state and persistence</strong></p>
+<p>First app with persistent data and a second screen. Introduced <code>@Observable</code> as the modern alternative to <code>@ObservableObject</code>/<code>@Published</code>, and <code>UserDefaults</code> + <code>Codable</code> as a persistence layer.</p>
+<p><strong>New concepts:</strong> <code>@Observable</code>, <code>didSet</code> persistence pattern, <code>UserDefaults</code>, <code>JSONEncoder</code>/<code>JSONDecoder</code>, <code>.sheet()</code>, <code>@Environment(\.dismiss)</code>, <code>onDelete</code>, <code>EditButton</code></p>
+<p><strong>The click:</strong> Putting persistence logic inside the model (not the view) keeps views clean — they just read/write <code>expenses.items</code> without caring where it's saved.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-4-moonshot">Project 4 — Moonshot<a class="headerlink" href="#project-4-moonshot" title="Permanent link">¶</a></h2>
+<p><strong>Focus: Complex data, grids, and multi-level navigation</strong></p>
+<p>Most architecturally complex project so far. Required cross-referencing two JSON datasets (missions + astronauts) and navigating three levels deep. Introduced <code>LazyVGrid</code> and a reusable generic JSON decoder.</p>
+<p><strong>New concepts:</strong> <code>LazyVGrid</code>, <code>.adaptive</code> GridItem, <code>Bundle.decode&lt;T&gt;()</code> generic extension, <code>navigationDestination(for:)</code>, custom <code>Color</code> assets, multi-level <code>NavigationStack</code>, <code>ScrollView</code></p>
+<p><strong>The click:</strong> The generic <code>Bundle.decode&lt;T&gt;()</code> extension — one function that handles any <code>Codable</code> type. Generics clicked as a concept here.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-5-cupcake-corner">Project 5 — Cupcake Corner<a class="headerlink" href="#project-5-cupcake-corner" title="Permanent link">¶</a></h2>
+<p><strong>Focus: Networking and async/await</strong></p>
+<p>First app to talk to the internet. Sending a real POST request with JSON, decoding the response, and handling it non-blocking with <code>async/await</code>. Also: multi-screen forms, validation, and <code>AsyncImage</code>.</p>
+<p><strong>New concepts:</strong> <code>URLSession.upload(for:from:)</code>, <code>URLRequest</code>, <code>async/await</code>, <code>Task {}</code>, <code>.task</code> modifier, <code>AsyncImage</code>, form validation with <code>disabled()</code>, shared <code>@Observable</code> across a nav stack</p>
+<p><strong>The click:</strong> <code>Task {}</code> inside a button action as the bridge from synchronous SwiftUI event handling to asynchronous network calls. Also: <code>.task</code> auto-cancels on view disappear — cleaner than <code>.onAppear</code>.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-6-bookworm">Project 6 — BookWorm<a class="headerlink" href="#project-6-bookworm" title="Permanent link">¶</a></h2>
+<p><strong>Focus: SwiftData — real database persistence</strong></p>
+<p>Replaced UserDefaults with SwiftData — Apple's modern database layer. Built a custom <code>@Binding</code>-driven star rating component and learned the full SwiftData lifecycle: <code>@Model</code>, <code>@Query</code>, <code>modelContext</code>.</p>
+<p><strong>New concepts:</strong> <code>SwiftData</code>, <code>@Model</code>, <code>@Query</code>, <code>modelContext.insert()</code>, <code>modelContext.delete()</code>, <code>.modelContainer()</code>, custom <code>@Binding</code> views, <code>Picker</code> with genre list</p>
+<p><strong>The click:</strong> <code>@Query</code> is live — no refresh logic needed. Add a book, the <code>List</code> updates instantly. SwiftData handles everything Core Data required 100 lines of boilerplate for.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-7-swiftdataproject">Project 7 — SwiftDataProject<a class="headerlink" href="#project-7-swiftdataproject" title="Permanent link">¶</a></h2>
+<p><strong>Focus: SwiftData deep dive — relationships, dynamic queries, iCloud sync</strong></p>
+<p>Pushed SwiftData further by introducing model relationships, runtime-configurable filtering and sorting, and iCloud sync via CloudKit. The key architectural lesson was separating query logic into a dedicated child view with a custom initializer so that filter/sort config can be injected from a parent.</p>
+<p><strong>New concepts:</strong> <code>@Relationship(deleteRule: .cascade)</code>, <code>#Predicate</code>, <code>SortDescriptor</code>, custom <code>@Query</code> <code>init</code> with <code>_users</code> underscore syntax, <code>@Bindable</code> for two-way bindings on <code>@Model</code> objects, programmatic <code>NavigationStack</code> with <code>path</code>, CloudKit capability setup, optional model properties for iCloud compatibility</p>
+<p><strong>The click:</strong> The <code>_users</code> underscore syntax — reaching into the property wrapper itself to construct the <code>@Query</code> dynamically at init time. Also: CloudKit sync requires zero networking code — just the right capability and optional properties on your models.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-8-instafilter">Project 8 — InstaFilter<a class="headerlink" href="#project-8-instafilter" title="Permanent link">¶</a></h2>
+<p><strong>Focus: Core Image — photo processing pipeline</strong></p>
+<p>First project to touch media processing. The main challenge was understanding that SwiftUI's <code>Image</code> is display-only — all the real work happens in Core Image's own type system before converting back to SwiftUI at the end. Also introduced <code>PhotosPicker</code>, <code>ShareLink</code>, and StoreKit review prompts.</p>
+<p><strong>New concepts:</strong> <code>CIFilter</code>, <code>CIContext</code>, <code>CIImage</code>, <code>UIImage</code> ↔ <code>CGImage</code> conversion, <code>PhotosPicker</code>, <code>kCIInputIntensityKey</code> / <code>kCIInputRadiusKey</code>, <code>ShareLink</code>, <code>SharePreview</code>, <code>@AppStorage</code>, <code>StoreKit</code> <code>requestReview</code>, <code>ContentUnavailableView</code>, <code>confirmationDialog</code></p>
+<p><strong>The click:</strong> The image pipeline — <code>UIImage → CIImage → filter → CGImage → UIImage → SwiftUI Image</code>. Once that chain clicked, Core Image stopped feeling like magic and started feeling mechanical. Also: <code>CIContext</code> is expensive, so it lives at the struct level, not inside the processing function.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-9-bucketlist">Project 9 — BucketList<a class="headerlink" href="#project-9-bucketlist" title="Permanent link">¶</a></h2>
+<p><strong>Focus: MapKit, location, and biometric authentication</strong></p>
+<p>First project involving maps and real-world coordinates. Covered the full MapKit SwiftUI integration — rendering a map, placing custom annotation views, and converting screen taps to geographic coordinates. Added live Wikipedia data fetching and locked everything behind Face ID / Touch ID.</p>
+<p><strong>New concepts:</strong> <code>Map</code>, <code>MapReader</code>, <code>Annotation</code>, <code>CLLocationCoordinate2D</code>, <code>MKCoordinateRegion</code>, <code>MapCameraPosition</code>, <code>proxy.convert(_:from:)</code>, <code>LocalAuthentication</code>, <code>LAContext</code>, <code>sheet(item:)</code> with optional binding, <code>@Observable</code> MVVM via <code>ContentView</code> extension, <code>Comparable</code> conformance, custom <code>Equatable</code> <code>==</code></p>
+<p><strong>The click:</strong> <code>sheet(item:)</code> with an optional — one property drives both whether the sheet is shown and what data it receives. SwiftUI unwraps the optional automatically inside the closure. Cleaner than a separate Bool + separate data property.</p>
+<p>Also: long press gestures on <code>Map</code> annotation views conflict with the map's internal gesture recognizers on real devices (system gate timeout). Using <code>.onTapGesture</code> on the annotation view fixes it because the annotation intercepts the tap before the map sees it.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-10-accessibilitysandbox">Project 10 — AccessibilitySandbox<a class="headerlink" href="#project-10-accessibilitysandbox" title="Permanent link">¶</a></h2>
+<p><strong>Focus: VoiceOver, Voice Control, and the UIAccessibility API</strong></p>
+<p>A dedicated sandbox for iOS accessibility — the two systems every shipped app needs to support: VoiceOver (screen reader for blind/low-vision users) and Voice Control (speech commands for motor-impaired users). Each experiment isolated one modifier so the behavior could be verified directly with VoiceOver or Voice Control enabled.</p>
+<p><strong>New concepts:</strong> <code>.accessibilityLabel</code>, <code>.accessibilityHint</code>, <code>.accessibilityHidden</code>, <code>Image(decorative:)</code>, <code>.accessibilityElement(children: .combine/.ignore)</code>, <code>.accessibilityAddTraits</code>, <code>.accessibilityRemoveTraits</code>, <code>.accessibilityValue</code>, <code>.accessibilityAdjustableAction</code>, <code>.accessibilityInputLabels</code></p>
+<p><strong>The click:</strong> The <code>.combine</code> vs <code>.ignore</code> distinction on <code>.accessibilityElement</code> — <code>.combine</code> keeps children readable but separate (VoiceOver pauses between them); <code>.ignore</code> collapses everything under one parent label that you write yourself. Getting this wrong either over-reads or silently skips content.</p>
+<p>Also: VoiceOver and Voice Control are completely separate systems. <code>.accessibilityInputLabels</code> only helps Voice Control users — it has zero effect on VoiceOver. They require different testing approaches: VoiceOver with swipe navigation, Voice Control with spoken commands.</p>
+</div>
+<div class="timeline-item">
+<h2 id="project-11-hotprospects">Project 11 — HotProspects<a class="headerlink" href="#project-11-hotprospects" title="Permanent link">¶</a></h2>
+<p><strong>Focus: TabView, local notifications, and dynamic SwiftData queries</strong></p>
+<p>A conference networking app that brings together several previously learned systems — SwiftData, Core Image, <code>@AppStorage</code> — and adds two new ones: local notifications via <code>UNUserNotificationCenter</code> and QR code scanning via <code>CodeScanner</code>. The central architectural challenge was reusing one view across three tabs with different queries.</p>
+<p><strong>New concepts:</strong> <code>TabView</code>, <code>UNUserNotificationCenter</code>, <code>UNMutableNotificationContent</code>, <code>UNTimeIntervalNotificationTrigger</code>, <code>CodeScanner</code>, <code>CIFilter.qrCodeGenerator()</code>, dynamic <code>@Query</code> via custom <code>init</code> with <code>_prospects</code>, <code>List(selection:)</code> multi-select, <code>.swipeActions</code>, <code>.safeAreaInset(edge: .bottom)</code></p>
+<p><strong>The click:</strong> Reusing <code>ProspectsView</code> three times with different <code>FilterType</code> values — and swapping the <code>@Query</code> at <code>init</code> time using the <code>_prospects</code> underscore syntax. The query changes per tab, but the view code is identical. Also: SwiftData detects <code>isContacted</code> mutations automatically and moves the prospect to the correct filtered tab with no extra code.</p>
+<p>Also: <code>.bottomBar</code> <code>ToolbarItem</code> and <code>TabView</code> conflict when the item is conditionally shown — the delete button ended up behind the tab bar. <code>.safeAreaInset(edge: .bottom)</code> is the correct replacement: always in the view tree, always respects the safe area.</p>
+</div>
+</div>
+<hr>
+<h2 id="cumulative-skill-map">Cumulative Skill Map<a class="headerlink" href="#cumulative-skill-map" title="Permanent link">¶</a></h2>
+<p>By the end of these 10 projects, the following areas are covered:</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> State management — <code>@State</code>, <code>@Binding</code>, <code>@Observable</code>, <code>@AppStorage</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Navigation — <code>NavigationStack</code>, <code>TabView</code>, multi-level drill-down, sheets</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Layouts — stacks, <code>List</code>, <code>LazyVGrid</code>, <code>ScrollView</code>, multi-select lists</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Animations — implicit, explicit, transitions, gestures</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Persistence — <code>UserDefaults</code>, <code>SwiftData</code>, <code>CloudKit</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Networking — <code>URLSession</code>, <code>async/await</code>, <code>Codable</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> UIKit bridging — <code>UITextChecker</code></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Core Image — <code>CIFilter</code>, <code>CIContext</code>, photo processing pipeline, QR code generation</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Location &amp; Maps — <code>MapKit</code>, <code>CLLocationCoordinate2D</code>, <code>MapReader</code>, custom annotations</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Biometric auth — <code>LocalAuthentication</code>, <code>LAContext</code>, Face ID / Touch ID</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Accessibility — VoiceOver, Voice Control, traits, grouping, adjustable actions</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled="" checked=""><span class="task-list-indicator"></span></label> Notifications — <code>UNUserNotificationCenter</code>, <code>UNMutableNotificationContent</code>, local triggers</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> Testing — unit tests, UI tests <em>(next)</em></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled=""><span class="task-list-indicator"></span></label> Custom drawing — <code>Canvas</code>, <code>Path</code>, <code>Shape</code></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden="">
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"></path></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/isiflo2728" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"></path></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.top", "navigation.indexes", "search.highlight", "search.suggest", "search.share", "content.code.copy", "content.code.annotate", "toc.follow"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  
+<script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(()=>{ lightbox.reload(); });
+</script></body></html>
