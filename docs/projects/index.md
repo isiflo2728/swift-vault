@@ -1,6 +1,6 @@
 # Projects
 
-Ten SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, and accessibility.
+Eleven SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, and local notifications.
 
 ---
 
@@ -83,6 +83,14 @@ Ten SwiftUI apps built from scratch while learning iOS development. Each one tar
   <h3>AccessibilitySandbox</h3>
   <p>Focused experiments covering every major iOS accessibility API — VoiceOver labels, grouping, traits, and Voice Control.</p>
   <div class="card-concepts">.accessibilityLabel · .accessibilityElement · VoiceOver · Voice Control</div>
+  <div class="card-cta">View Project →</div>
+</a>
+
+<a class="project-card" href="hot-prospects/">
+  <div class="card-tag">hot-prospects</div>
+  <h3>HotProspects</h3>
+  <p>Conference networking app — scan QR codes to import contacts, manage them across tabs, and send local notification reminders.</p>
+  <div class="card-concepts">SwiftData · TabView · CodeScanner · UNUserNotificationCenter · CIFilter</div>
   <div class="card-cta">View Project →</div>
 </a>
 

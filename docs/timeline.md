@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, and accessibility stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, and local notifications stack — one project at a time.
 
 ---
 
@@ -140,6 +140,21 @@ Also: VoiceOver and Voice Control are completely separate systems. `.accessibili
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 11 — HotProspects
+**Focus: TabView, local notifications, and dynamic SwiftData queries**
+
+A conference networking app that brings together several previously learned systems — SwiftData, Core Image, `@AppStorage` — and adds two new ones: local notifications via `UNUserNotificationCenter` and QR code scanning via `CodeScanner`. The central architectural challenge was reusing one view across three tabs with different queries.
+
+**New concepts:** `TabView`, `UNUserNotificationCenter`, `UNMutableNotificationContent`, `UNTimeIntervalNotificationTrigger`, `CodeScanner`, `CIFilter.qrCodeGenerator()`, dynamic `@Query` via custom `init` with `_prospects`, `List(selection:)` multi-select, `.swipeActions`, `.safeAreaInset(edge: .bottom)`
+
+**The click:** Reusing `ProspectsView` three times with different `FilterType` values — and swapping the `@Query` at `init` time using the `_prospects` underscore syntax. The query changes per tab, but the view code is identical. Also: SwiftData detects `isContacted` mutations automatically and moves the prospect to the correct filtered tab with no extra code.
+
+Also: `.bottomBar` `ToolbarItem` and `TabView` conflict when the item is conditionally shown — the delete button ended up behind the tab bar. `.safeAreaInset(edge: .bottom)` is the correct replacement: always in the view tree, always respects the safe area.
+
+</div>
+
 </div>
 
 ---
@@ -149,16 +164,16 @@ Also: VoiceOver and Voice Control are completely separate systems. `.accessibili
 By the end of these 10 projects, the following areas are covered:
 
 - [x] State management — `@State`, `@Binding`, `@Observable`, `@AppStorage`
-- [x] Navigation — `NavigationStack`, multi-level drill-down, sheets
-- [x] Layouts — stacks, `List`, `LazyVGrid`, `ScrollView`
+- [x] Navigation — `NavigationStack`, `TabView`, multi-level drill-down, sheets
+- [x] Layouts — stacks, `List`, `LazyVGrid`, `ScrollView`, multi-select lists
 - [x] Animations — implicit, explicit, transitions, gestures
 - [x] Persistence — `UserDefaults`, `SwiftData`, `CloudKit`
 - [x] Networking — `URLSession`, `async/await`, `Codable`
 - [x] UIKit bridging — `UITextChecker`
-- [x] Core Image — `CIFilter`, `CIContext`, photo processing pipeline
+- [x] Core Image — `CIFilter`, `CIContext`, photo processing pipeline, QR code generation
 - [x] Location & Maps — `MapKit`, `CLLocationCoordinate2D`, `MapReader`, custom annotations
 - [x] Biometric auth — `LocalAuthentication`, `LAContext`, Face ID / Touch ID
 - [x] Accessibility — VoiceOver, Voice Control, traits, grouping, adjustable actions
+- [x] Notifications — `UNUserNotificationCenter`, `UNMutableNotificationContent`, local triggers
 - [ ] Testing — unit tests, UI tests *(next)*
 - [ ] Custom drawing — `Canvas`, `Path`, `Shape`
-- [ ] Notifications — `UserNotifications`

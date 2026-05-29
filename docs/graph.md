@@ -81,6 +81,7 @@
     { id: "InstaFilter",         type: "project", url: "../projects/instafilter/" },
     { id: "BucketList",          type: "project", url: "../projects/bucketlist/" },
     { id: "AccessibilitySandbox",type: "project", url: "../projects/accessibility-sandbox/" },
+    { id: "HotProspects",       type: "project", url: "../projects/hot-prospects/" },
 
     { id: "@State",             type: "concept", url: "../concepts/state-data-flow/" },
     { id: "@Binding",           type: "concept", url: "../concepts/state-data-flow/" },
@@ -125,6 +126,9 @@
     { id: ".accessibilityElement",      type: "concept", url: "../concepts/accessibility/" },
     { id: ".accessibilityAdjustableAction", type: "concept", url: "../concepts/accessibility/" },
     { id: ".accessibilityInputLabels",  type: "concept", url: "../concepts/accessibility/" },
+    { id: "TabView",                    type: "concept", url: "../concepts/navigation/" },
+    { id: "UNUserNotificationCenter",   type: "concept", url: "../projects/hot-prospects/" },
+    { id: ".swipeActions",              type: "concept", url: "../concepts/layouts-lists/" },
   ];
 
   const links = [
@@ -203,6 +207,22 @@
     { source: "AccessibilitySandbox", target: ".accessibilityElement" },
     { source: "AccessibilitySandbox", target: ".accessibilityAdjustableAction" },
     { source: "AccessibilitySandbox", target: ".accessibilityInputLabels" },
+
+    { source: "HotProspects", target: "TabView" },
+    { source: "HotProspects", target: "SwiftData" },
+    { source: "HotProspects", target: "@Query" },
+    { source: "HotProspects", target: "@Environment" },
+    { source: "HotProspects", target: "@AppStorage" },
+    { source: "HotProspects", target: "#Predicate" },
+    { source: "HotProspects", target: "SortDescriptor" },
+    { source: "HotProspects", target: "NavigationStack" },
+    { source: "HotProspects", target: "Sheet" },
+    { source: "HotProspects", target: "List" },
+    { source: "HotProspects", target: "CIFilter" },
+    { source: "HotProspects", target: "CIContext" },
+    { source: "HotProspects", target: "ShareLink" },
+    { source: "HotProspects", target: "UNUserNotificationCenter" },
+    { source: "HotProspects", target: ".swipeActions" },
   ];
 
   const degree = {};
@@ -358,48 +378,51 @@
 
 ## Concept Coverage by Project
 
-|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject | InstaFilter | BucketList | AccessibilitySandbox |
-|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | |
-| @Binding | | | | | | ✓ | | | | |
-| @Bindable | | | | | | | ✓ | | | |
-| @Observable | | | ✓ | | ✓ | | | | ✓ | |
-| @Environment | | | | | | ✓ | ✓ | ✓ | ✓ | |
-| @Query | | | | | | ✓ | ✓ | | | |
-| @Relationship | | | | | | | ✓ | | | |
-| @AppStorage | | | | | | | | ✓ | | |
-| Equatable | | | | | | | | | ✓ | |
-| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | |
-| Sheet | | | ✓ | | | | | | ✓ | |
-| navigationDestination | | | | ✓ | ✓ | | ✓ | | | |
-| confirmationDialog | | | | | | | | ✓ | | |
-| List | ✓ | | ✓ | | | ✓ | ✓ | | | |
-| LazyVGrid | | | | ✓ | | | | | | |
-| ScrollView | | | | ✓ | | | | | | |
-| Implicit Animation | | ✓ | | | | | | | | |
-| Explicit Animation | | ✓ | | | | | | | | |
-| Transitions | | ✓ | | | | | | | | |
-| DragGesture | | ✓ | | | | | | | | |
-| UserDefaults | | | ✓ | | | | | | | |
-| SwiftData | | | | | | ✓ | ✓ | | | |
-| #Predicate | | | | | | | ✓ | | | |
-| SortDescriptor | | | | | | | ✓ | | | |
-| CloudKit | | | | | | | ✓ | | | |
-| Codable | | | ✓ | ✓ | ✓ | | | | ✓ | |
-| URLSession | | | | | ✓ | | | | ✓ | |
-| async/await | | | | | ✓ | | | ✓ | ✓ | |
-| AsyncImage | | | | | ✓ | | | | | |
-| CIFilter | | | | | | | | ✓ | | |
-| CIContext | | | | | | | | ✓ | | |
-| PhotosPicker | | | | | | | | ✓ | | |
-| ShareLink | | | | | | | | ✓ | | |
-| StoreKit | | | | | | | | ✓ | | |
-| MapKit | | | | | | | | | ✓ | |
-| MapReader | | | | | | | | | ✓ | |
-| Annotation | | | | | | | | | ✓ | |
-| LocalAuthentication | | | | | | | | | ✓ | |
-| .accessibilityLabel | | | | | | | | | | ✓ |
-| .accessibilityHidden | | | | | | | | | | ✓ |
-| .accessibilityElement | | | | | | | | | | ✓ |
-| .accessibilityAdjustableAction | | | | | | | | | | ✓ |
-| .accessibilityInputLabels | | | | | | | | | | ✓ |
+|  | WordScramble | AnimationTechnique | iExpense | Moonshot | Cupcake Corner | BookWorm | SwiftDataProject | InstaFilter | BucketList | AccessibilitySandbox | HotProspects |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| @State | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | ✓ |
+| @Binding | | | | | | ✓ | | | | | |
+| @Bindable | | | | | | | ✓ | | | | |
+| @Observable | | | ✓ | | ✓ | | | | ✓ | | |
+| @Environment | | | | | | ✓ | ✓ | ✓ | ✓ | | ✓ |
+| @Query | | | | | | ✓ | ✓ | | | | ✓ |
+| @Relationship | | | | | | | ✓ | | | | |
+| @AppStorage | | | | | | | | ✓ | | | ✓ |
+| Equatable | | | | | | | | | ✓ | | |
+| NavigationStack | ✓ | | ✓ | ✓ | ✓ | ✓ | ✓ | ✓ | | | ✓ |
+| TabView | | | | | | | | | | | ✓ |
+| Sheet | | | ✓ | | | | | | ✓ | | ✓ |
+| navigationDestination | | | | ✓ | ✓ | | ✓ | | | | |
+| confirmationDialog | | | | | | | | ✓ | | | |
+| List | ✓ | | ✓ | | | ✓ | ✓ | | | | ✓ |
+| .swipeActions | | | | | | | | | | | ✓ |
+| LazyVGrid | | | | ✓ | | | | | | | |
+| ScrollView | | | | ✓ | | | | | | | |
+| Implicit Animation | | ✓ | | | | | | | | | |
+| Explicit Animation | | ✓ | | | | | | | | | |
+| Transitions | | ✓ | | | | | | | | | |
+| DragGesture | | ✓ | | | | | | | | | |
+| UserDefaults | | | ✓ | | | | | | | | |
+| SwiftData | | | | | | ✓ | ✓ | | | | ✓ |
+| #Predicate | | | | | | | ✓ | | | | ✓ |
+| SortDescriptor | | | | | | | ✓ | | | | ✓ |
+| CloudKit | | | | | | | ✓ | | | | |
+| Codable | | | ✓ | ✓ | ✓ | | | | ✓ | | |
+| URLSession | | | | | ✓ | | | | ✓ | | |
+| async/await | | | | | ✓ | | | ✓ | ✓ | | |
+| AsyncImage | | | | | ✓ | | | | | | |
+| CIFilter | | | | | | | | ✓ | | | ✓ |
+| CIContext | | | | | | | | ✓ | | | ✓ |
+| PhotosPicker | | | | | | | | ✓ | | | |
+| ShareLink | | | | | | | | ✓ | | | ✓ |
+| StoreKit | | | | | | | | ✓ | | | |
+| UNUserNotificationCenter | | | | | | | | | | | ✓ |
+| MapKit | | | | | | | | | ✓ | | |
+| MapReader | | | | | | | | | ✓ | | |
+| Annotation | | | | | | | | | ✓ | | |
+| LocalAuthentication | | | | | | | | | ✓ | | |
+| .accessibilityLabel | | | | | | | | | | ✓ | |
+| .accessibilityHidden | | | | | | | | | | ✓ | |
+| .accessibilityElement | | | | | | | | | | ✓ | |
+| .accessibilityAdjustableAction | | | | | | | | | | ✓ | |
+| .accessibilityInputLabels | | | | | | | | | | ✓ | |

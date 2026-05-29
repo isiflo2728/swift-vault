@@ -9,7 +9,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
 ## What's Inside
 
 === "Projects"
-    Ten real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
+    Eleven real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
 
     | Project | Focus | Key Concepts |
     |---|---|---|
@@ -23,6 +23,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     | [InstaFilter](projects/instafilter.md) | Photo filter app | `CIFilter`, `PhotosPicker`, `ShareLink`, StoreKit |
     | [BucketList](projects/bucketlist.md) | Location bookmarks | `MapKit`, `MapReader`, `LocalAuthentication`, Wikipedia API |
     | [AccessibilitySandbox](projects/accessibility-sandbox.md) | Accessibility APIs | VoiceOver, Voice Control, `.accessibilityElement`, adjustable actions |
+    | [HotProspects](projects/hot-prospects.md) | Conference networking | `SwiftData`, `TabView`, `CodeScanner`, `UNUserNotificationCenter`, `CIFilter` |
 
 === "Concepts"
     Concepts extracted and linked across all projects so patterns become visible.
@@ -38,7 +39,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     - [Accessibility](concepts/accessibility.md) — VoiceOver, Voice Control, traits, grouping, adjustable actions
 
 === "Timeline"
-    [The full learning progression →](timeline.md) — from first `List` to MapKit, biometric auth, and accessibility.
+    [The full learning progression →](timeline.md) — from first `List` to MapKit, biometric auth, accessibility, and local notifications.
 
 === "Knowledge Graph"
     [See how everything connects →](graph.md) — a visual map of concepts across projects.
