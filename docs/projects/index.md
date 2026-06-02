@@ -1,6 +1,6 @@
 # Projects
 
-Eleven SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, and local notifications.
+Twelve SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, local notifications, and gesture-driven interactions.
 
 ---
 
@@ -91,6 +91,14 @@ Eleven SwiftUI apps built from scratch while learning iOS development. Each one 
   <h3>HotProspects</h3>
   <p>Conference networking app — scan QR codes to import contacts, manage them across tabs, and send local notification reminders.</p>
   <div class="card-concepts">SwiftData · TabView · CodeScanner · UNUserNotificationCenter · CIFilter</div>
+  <div class="card-cta">View Project →</div>
+</a>
+
+<a class="project-card" href="flashzilla/">
+  <div class="card-tag">FlashZilla</div>
+  <h3>FlashZilla</h3>
+  <p>Timed flashcard app — swipe cards right or wrong against a 100-second countdown, with full accessibility support.</p>
+  <div class="card-concepts">DragGesture · Timer · Combine · scenePhase · UserDefaults</div>
   <div class="card-cta">View Project →</div>
 </a>
 

@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, and local notifications stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, local notifications, and gesture-driven interaction stack — one project at a time.
 
 ---
 
@@ -155,18 +155,33 @@ Also: `.bottomBar` `ToolbarItem` and `TabView` conflict when the item is conditi
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 12 — FlashZilla
+**Focus: Gesture mechanics, Combine timers, and accessibility environment values**
+
+A timed flashcard app that made gestures feel like a real system rather than a one-off modifier. The core challenge was coordinating the `DragGesture` on each card with the outer timer, the scene lifecycle, and three different accessibility states — all at once. Gestures, Combine publishers, and environment values had to work as a unit.
+
+**New concepts:** `DragGesture` with `gesture.translation`, `.rotationEffect` + `.offset` proportional to drag width, `.stacked(at:in:)` custom `View` extension, `allowsHitTesting`, `Timer.publish(every:on:in:).autoconnect()`, `internal import Combine`, `.onReceive`, `scenePhase` + `.onChange(of:)`, `accessibilityDifferentiateWithoutColor`, `accessibilityVoiceOverEnabled`, sequenced gestures (`.sequenced(before:)`), simultaneous gestures (`.simultaneousGesture`), `.contentShape(.rect)`, `.accessibilityHidden`, `.accessibilityAddTraits(.isButton)`
+
+**The click:** `allowsHitTesting(false)` on the card `ZStack` when `timeRemaining == 0` — one modifier on the container kills all interaction inside it. No per-card logic needed. Also: the timer publisher keeps firing in the background regardless of app state — `isActive` guarded by `scenePhase` is the correct gate, not trying to stop or restart the publisher.
+
+</div>
+
 </div>
 
 ---
 
 ## Cumulative Skill Map
 
-By the end of these 10 projects, the following areas are covered:
+By the end of these 12 projects, the following areas are covered:
 
 - [x] State management — `@State`, `@Binding`, `@Observable`, `@AppStorage`
 - [x] Navigation — `NavigationStack`, `TabView`, multi-level drill-down, sheets
 - [x] Layouts — stacks, `List`, `LazyVGrid`, `ScrollView`, multi-select lists
 - [x] Animations — implicit, explicit, transitions, gestures
+- [x] Gesture system — `DragGesture`, `LongPressGesture`, `MagnifyGesture`, `RotateGesture`, sequenced, simultaneous
+- [x] Combine — `Timer.publish`, `.onReceive`, publisher lifecycle with `scenePhase`
 - [x] Persistence — `UserDefaults`, `SwiftData`, `CloudKit`
 - [x] Networking — `URLSession`, `async/await`, `Codable`
 - [x] UIKit bridging — `UITextChecker`
