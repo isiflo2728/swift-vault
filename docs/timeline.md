@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, local notifications, and gesture-driven interaction stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, local notifications, gesture-driven interaction, and layout system mastery stack — one project at a time.
 
 ---
 
@@ -170,6 +170,23 @@ A timed flashcard app that made gestures feel like a real system rather than a o
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 13 — LayoutandGeometry
+**Focus: The layout system and scroll-driven geometry effects**
+
+The first project that went *under the hood* of SwiftUI rather than using it. Instead of building an app with features, this one cracked open the layout engine — understanding the three-step size negotiation, why modifier order matters, and how `GeometryReader` turns a scroll position into a live number that drives real-time transforms.
+
+**New concepts:** Three-step layout system (parent proposes → child chooses → parent places), layout neutrality, `ModifiedContent` (modifiers as views), `.alignmentGuide`, custom `VerticalAlignment`, `position()` vs `offset()`, `GeometryReader`, `proxy.frame(in:)` with `.global` / `.local` / `.named()`, `.coordinateSpace(name:)`, `rotation3DEffect`, `visualEffect`, `scrollTargetLayout`, `scrollTargetBehavior(.viewAligned)`
+
+**The click:** Everything reduces to `minY`. Once `proxy.frame(in: .global).minY` is understood as a live sensor — a number that tracks exactly how far a view is from the top of the screen as the user scrolls — rotation, opacity, and scale all become trivial. Each effect is just: take `minY`, do math, clamp the result, pass it to a modifier. The clamping pattern `min(max(value, floor), ceiling)` is not SwiftUI-specific — it's just "keep this number inside this range."
+
+Also: `visualEffect` is the right tool when you want to transform without disrupting layout. `GeometryReader` fights the layout system (flexible size, top-left alignment) because it *is* part of the layout system. `visualEffect` sidesteps all of that — it runs after layout and only affects rendering.
+
+</div>
+
+</div>
+
 ---
 
 ## Cumulative Skill Map
@@ -190,5 +207,8 @@ By the end of these 12 projects, the following areas are covered:
 - [x] Biometric auth — `LocalAuthentication`, `LAContext`, Face ID / Touch ID
 - [x] Accessibility — VoiceOver, Voice Control, traits, grouping, adjustable actions
 - [x] Notifications — `UNUserNotificationCenter`, `UNMutableNotificationContent`, local triggers
+- [x] Layout system — three-step size negotiation, layout neutrality, modifier view wrapping
+- [x] Geometry — `GeometryReader`, coordinate spaces (global/local/named), `visualEffect`
+- [x] Scroll effects — `rotation3DEffect`, opacity and scale driven by `minY`, `scrollTargetBehavior`
 - [ ] Testing — unit tests, UI tests *(next)*
 - [ ] Custom drawing — `Canvas`, `Path`, `Shape`

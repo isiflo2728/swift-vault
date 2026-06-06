@@ -1,6 +1,6 @@
 # Projects
 
-Twelve SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, local notifications, and gesture-driven interactions.
+Thirteen SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, local notifications, gesture-driven interactions, and deep layout system mechanics.
 
 ---
 
@@ -99,6 +99,14 @@ Twelve SwiftUI apps built from scratch while learning iOS development. Each one 
   <h3>FlashZilla</h3>
   <p>Timed flashcard app — swipe cards right or wrong against a 100-second countdown, with full accessibility support.</p>
   <div class="card-concepts">DragGesture · Timer · Combine · scenePhase · UserDefaults</div>
+  <div class="card-cta">View Project →</div>
+</a>
+
+<a class="project-card" href="layout-and-geometry/">
+  <div class="card-tag">layout-and-geometry</div>
+  <h3>LayoutandGeometry</h3>
+  <p>How SwiftUI's layout engine actually works — then weaponized with GeometryReader to drive real-time scroll effects, 3D rotation, opacity fades, and scale transforms.</p>
+  <div class="card-concepts">GeometryReader · rotation3DEffect · visualEffect · scrollTargetBehavior</div>
   <div class="card-cta">View Project →</div>
 </a>
 

@@ -1,8 +1,8 @@
 # Layouts & Lists
 
-> Arranging views on screen — from simple stacks to adaptive grids and dynamic data-driven lists.
+> Arranging views on screen — from simple stacks to adaptive grids, dynamic data-driven lists, and scroll-driven geometry effects.
 
-**Appears in:** WordScramble · Moonshot · iExpense · BookWorm · HotProspects
+**Appears in:** WordScramble · Moonshot · iExpense · BookWorm · HotProspects · LayoutandGeometry
 
 ---
 
@@ -110,16 +110,102 @@ ScrollView {
 
 ## GeometryReader
 
-Read the parent's size and position at render time:
+Reads the proposed size and live position of its container at render time. The `proxy` parameter exposes `.size` and `.frame(in:)`.
 
 ```swift
-GeometryReader { geometry in
+GeometryReader { proxy in
     Image("banner")
-        .frame(width: geometry.size.width)
+        .frame(width: proxy.size.width * 0.9)
 }
 ```
 
-**Caution:** `GeometryReader` takes all available space and aligns children to the top-left. Wrap it tightly and only use it when you genuinely need the parent dimensions.
+**Caution:** `GeometryReader` takes all available space and aligns children to the top-left. Wrap it tightly and always give it an explicit `.frame()` when used inside a `ForEach`.
+
+### Coordinate Spaces
+
+`proxy.frame(in:)` returns the view's rect in whichever coordinate space you request:
+
+| Space | Returns position relative to... |
+|---|---|
+| `.global` | Top-left corner of the screen |
+| `.local` | Top-left corner of the immediate parent container |
+| `.named("X")` | Top-left of any ancestor marked `.coordinateSpace(name: "X")` |
+
+```swift
+// Tag an ancestor with a name
+OuterView()
+    .coordinateSpace(name: "Custom")
+
+// Read position relative to it
+GeometryReader { proxy in
+    Text("Center")
+        .onTapGesture {
+            print(proxy.frame(in: .global).midY)       // from screen top
+            print(proxy.frame(in: .named("Custom")).midY) // from OuterView top
+            print(proxy.frame(in: .local).midY)        // from direct parent top
+        }
+}
+```
+
+### Scroll-Driven Effects
+
+Inside a `ScrollView`, `proxy.frame(in: .global).minY` updates in real time as the user scrolls — making it a live sensor for each row's position on screen.
+
+```swift
+GeometryReader { fullView in
+    ScrollView {
+        ForEach(0..<50) { index in
+            GeometryReader { proxy in
+                let minY = proxy.frame(in: .global).minY
+
+                Text("Row \(index)")
+                    .rotation3DEffect(.degrees(minY - fullView.size.height / 2) / 5,
+                                      axis: (x: 0, y: 1, z: 0))
+                    .opacity(max(minY / 200, 0))
+                    .scaleEffect(min(max(minY / 500, 0.5), 1))
+            }
+            .frame(height: 40)
+        }
+    }
+}
+```
+
+The clamping pattern `min(max(value, floor), ceiling)` keeps derived values inside a safe range:
+- `max(minY / 200, 0)` — opacity floors at 0 when the row scrolls above the screen (`minY` goes negative)
+- `min(max(minY / 500, 0.5), 1)` — scale stays in the range `[0.5, 1.0]`
+
+### `visualEffect` — The Modern Alternative
+
+`visualEffect` gives you the same `proxy` as `GeometryReader` without disrupting layout. The transform is applied after layout completes — the view keeps its natural size and position:
+
+```swift
+Text("Number \(num)")
+    .frame(width: 200, height: 200)
+    .visualEffect { content, proxy in
+        content.rotation3DEffect(
+            .degrees(proxy.frame(in: .global).minX) / 8,
+            axis: (x: 0, y: 1, z: 0)
+        )
+    }
+```
+
+Use `visualEffect` when you only need to *transform* a view. Use `GeometryReader` when you need to *size* a view based on available space.
+
+### `scrollTargetLayout` and `scrollTargetBehavior`
+
+Snap-to-card scrolling — but placement matters:
+
+```swift
+ScrollView(.horizontal) {
+    HStack(spacing: 0) {
+        ForEach(items) { item in CardView(item: item) }
+    }
+    .scrollTargetLayout()           // ← on the HStack, marks children as targets
+}
+.scrollTargetBehavior(.viewAligned) // ← on the ScrollView, controls snap behavior
+```
+
+Putting either modifier on the wrong view does nothing — no error, just no snapping.
 
 ---
 
@@ -182,3 +268,8 @@ When `EditButton` activates edit mode, checkboxes appear on each row. The select
 | Image or card grid | `LazyVGrid` with `.adaptive` |
 | Scroll without List chrome | `ScrollView` |
 | Measure parent size | `GeometryReader` |
+| Scroll-driven transforms (no layout disruption) | `visualEffect` |
+| Snap-to-card scrolling | `scrollTargetLayout` + `scrollTargetBehavior` |
+| Screen-relative position | `proxy.frame(in: .global)` |
+| Parent-relative position | `proxy.frame(in: .local)` |
+| Ancestor-relative position | `proxy.frame(in: .named(...))` |

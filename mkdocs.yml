@@ -81,6 +81,7 @@ nav:
     - AccessibilitySandbox: projects/accessibility-sandbox.md
     - HotProspects: projects/hot-prospects.md
     - FlashZilla: projects/flashzilla.md
+    - LayoutandGeometry: projects/layout-and-geometry.md
   - Concepts:
     - concepts/index.md
     - State & Data Flow: concepts/state-data-flow.md
