@@ -1,6 +1,6 @@
 # Projects
 
-Thirteen SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, local notifications, gesture-driven interactions, and deep layout system mechanics.
+Fourteen SwiftUI apps built from scratch while learning iOS development. Each one targets a new layer of the ecosystem — from basic UI to full networking, data persistence, iCloud sync, Core Image processing, MapKit, accessibility, local notifications, gesture-driven interactions, deep layout system mechanics, and adaptive multi-column navigation.
 
 ---
 
@@ -107,6 +107,14 @@ Thirteen SwiftUI apps built from scratch while learning iOS development. Each on
   <h3>LayoutandGeometry</h3>
   <p>How SwiftUI's layout engine actually works — then weaponized with GeometryReader to drive real-time scroll effects, 3D rotation, opacity fades, and scale transforms.</p>
   <div class="card-concepts">GeometryReader · rotation3DEffect · visualEffect · scrollTargetBehavior</div>
+  <div class="card-cta">View Project →</div>
+</a>
+
+<a class="project-card" href="snowseeker/">
+  <div class="card-tag">snowseeker</div>
+  <h3>SnowSeeker</h3>
+  <p>An adaptive ski-resort browser — sidebar + detail on iPad, a push stack on iPhone, from one NavigationSplitView. Search, favorite, and drill into resorts.</p>
+  <div class="card-concepts">NavigationSplitView · .searchable · @Observable · adaptive layout</div>
   <div class="card-cta">View Project →</div>
 </a>
 

@@ -2,7 +2,7 @@
 
 > Arranging views on screen — from simple stacks to adaptive grids, dynamic data-driven lists, and scroll-driven geometry effects.
 
-**Appears in:** WordScramble · Moonshot · iExpense · BookWorm · HotProspects · LayoutandGeometry
+**Appears in:** WordScramble · Moonshot · iExpense · BookWorm · HotProspects · LayoutandGeometry · SnowSeeker
 
 ---
 
@@ -105,6 +105,35 @@ ScrollView {
     }
 }
 ```
+
+---
+
+## Adaptive Layout
+
+The same content can need a different arrangement depending on screen width and the user's text size. Two `@Environment` values report those conditions, and a plain `if` switches the layout — no separate iPad/iPhone code path.
+
+```swift
+@Environment(\.horizontalSizeClass) var horizontalSizeClass
+@Environment(\.dynamicTypeSize) var dynamicTypeSize
+
+HStack {
+    if horizontalSizeClass == .compact && dynamicTypeSize > .large {
+        // narrow screen + large text would overflow side-by-side → stack vertically
+        VStack { ResortDetailsView(resort: resort) }
+        VStack { SkiDetailsView(resort: resort) }
+    } else {
+        ResortDetailsView(resort: resort)
+        SkiDetailsView(resort: resort)
+    }
+}
+```
+
+| Value | Tells you |
+|---|---|
+| `horizontalSizeClass` | `.compact` (iPhone portrait, narrow split) vs `.regular` (iPad, landscape) |
+| `dynamicTypeSize` | The user's chosen text size — comparable, so `> .large` works |
+
+**Combine the conditions, don't guess.** Side-by-side content usually fits; it only breaks on a *narrow* screen *and* large text at once. Checking both with `&&` targets the real failure instead of forcing a vertical layout on every small screen. For the highest-level "iPad sidebar vs iPhone stack" split, let [`NavigationSplitView`](navigation.md#navigationsplitview) handle it for you.
 
 ---
 

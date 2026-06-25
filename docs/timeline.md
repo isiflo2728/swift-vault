@@ -1,6 +1,6 @@
 # Learning Timeline
 
-> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, local notifications, gesture-driven interaction, and layout system mastery stack — one project at a time.
+> The progression from zero to a full iOS networking, persistence, iCloud sync, media processing, MapKit, accessibility, local notifications, gesture-driven interaction, layout system, and adaptive multi-column UI mastery stack — one project at a time.
 
 ---
 
@@ -185,16 +185,32 @@ Also: `visualEffect` is the right tool when you want to transform without disrup
 
 </div>
 
+<div class="timeline-item" markdown>
+
+## Project 14 — SnowSeeker
+**Focus: Adaptive UI — NavigationSplitView, search, and size-aware layout**
+
+The first project built to work *as well on iPad as on iPhone* from a single codebase. The headline tool was `NavigationSplitView` — one container that renders as a sidebar + detail on a wide screen and collapses to a push stack on a narrow one. Added `.searchable` list filtering, a favorites store shared through the environment, and a detail view that rearranges itself based on size class and Dynamic Type.
+
+**New concepts:** `NavigationSplitView` (master/detail, auto-collapse on compact), `.searchable(text:prompt:)`, `localizedStandardContains`, `@Observable` `Favorites` injected with `.environment` and read by type via `@Environment(Favorites.self)`, `@Environment(\.horizontalSizeClass)`, `@Environment(\.dynamicTypeSize)`, `Image(decorative:)`, `.alert(_:isPresented:presenting:)`, `Codable` resort model with `static let example` for previews
+
+**The click:** `NavigationSplitView` is *declarative about structure, not device*. You describe two panes; SwiftUI decides whether that's a sidebar + detail or a push stack based on available width — and switches live as the window resizes. No size checks, no iPad-specific code path. Also: `.searchable` only binds a `String` — the actual search is a plain computed `filteredResorts` property, so "search" is just the same view-is-a-function-of-state loop as everything else.
+
+Also: state that's *read* in one place and *written* in another — the favorite heart in the list vs. the toggle in the detail — is the exact case for putting an `@Observable` in the environment. Inject once, read by type, and every reader re-renders the moment the set changes.
+
+</div>
+
 </div>
 
 ---
 
 ## Cumulative Skill Map
 
-By the end of these 12 projects, the following areas are covered:
+By the end of these 14 projects, the following areas are covered:
 
-- [x] State management — `@State`, `@Binding`, `@Observable`, `@AppStorage`
-- [x] Navigation — `NavigationStack`, `TabView`, multi-level drill-down, sheets
+- [x] State management — `@State`, `@Binding`, `@Observable`, `@AppStorage`, `@Observable` in `@Environment`
+- [x] Navigation — `NavigationStack`, `NavigationSplitView`, `TabView`, `.searchable`, multi-level drill-down, sheets
+- [x] Adaptive UI — master/detail that collapses per device, `horizontalSizeClass` + `dynamicTypeSize`-aware layout
 - [x] Layouts — stacks, `List`, `LazyVGrid`, `ScrollView`, multi-select lists
 - [x] Animations — implicit, explicit, transitions, gestures
 - [x] Gesture system — `DragGesture`, `LongPressGesture`, `MagnifyGesture`, `RotateGesture`, sequenced, simultaneous

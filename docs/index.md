@@ -9,7 +9,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
 ## What's Inside
 
 === "Projects"
-    Thirteen real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
+    Fourteen real SwiftUI apps, each targeting a new layer of the iOS ecosystem.
 
     | Project | Focus | Key Concepts |
     |---|---|---|
@@ -26,6 +26,7 @@ This is a living knowledge vault documenting the process of mastering iOS develo
     | [HotProspects](projects/hot-prospects.md) | Conference networking | `SwiftData`, `TabView`, `CodeScanner`, `UNUserNotificationCenter`, `CIFilter` |
     | [FlashZilla](projects/flashzilla.md) | Flashcard game | `DragGesture`, `Timer`, Combine, `scenePhase`, `UserDefaults` |
     | [LayoutandGeometry](projects/layout-and-geometry.md) | Layout system + scroll effects | `GeometryReader`, `rotation3DEffect`, `visualEffect`, `scrollTargetBehavior` |
+    | [SnowSeeker](projects/snowseeker.md) | Adaptive ski-resort browser | `NavigationSplitView`, `.searchable`, `@Observable` + `@Environment`, adaptive layout |
 
 === "Concepts"
     Concepts extracted and linked across all projects so patterns become visible.

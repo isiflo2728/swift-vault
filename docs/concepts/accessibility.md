@@ -112,6 +112,23 @@ Button("→") { ... }
 
 ---
 
+## Dynamic Type
+
+Users can scale text up (or down) system-wide. SwiftUI fonts (`.headline`, `.title3`, etc.) resize automatically — but sometimes a *layout* needs to react too, not just the text. Read the current size from the environment:
+
+```swift
+@Environment(\.dynamicTypeSize) var dynamicTypeSize
+
+// dynamicTypeSize is Comparable
+if dynamicTypeSize > .large {
+    // give the content more room — stack things that were side by side
+}
+```
+
+A real example: in SnowSeeker the detail stats sit side by side normally, but switch to a vertical layout when text is large *and* the screen is compact — because that's the only combination where they'd overflow. See [Adaptive Layout](layouts-lists.md#adaptive-layout). You can also cap how far a specific view scales with `.dynamicTypeSize(...partial range)` when an element genuinely can't grow.
+
+---
+
 ## Quick Reference
 
 | Modifier | System | Purpose |
@@ -133,3 +150,5 @@ Button("→") { ... }
 ## Projects That Use This
 
 - [AccessibilitySandbox](../projects/accessibility-sandbox.md) — dedicated accessibility learning project
+- [FlashZilla](../projects/flashzilla.md) — `.accessibilityLabel`, hidden decorative views, traits, and accessibility environment values driving the UI
+- [SnowSeeker](../projects/snowseeker.md) — `Image(decorative:)` for the hero photo, labelled icon-only buttons, and `dynamicTypeSize` driving an adaptive layout

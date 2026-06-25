@@ -2,7 +2,7 @@
 
 > Moving between views — pushing onto a stack, presenting sheets, and multi-level drill-down.
 
-**Appears in:** WordScramble · Moonshot · iExpense · Cupcake Corner · BookWorm · HotProspects
+**Appears in:** WordScramble · Moonshot · iExpense · Cupcake Corner · BookWorm · HotProspects · SnowSeeker
 
 ---
 
@@ -38,6 +38,59 @@ NavigationStack {
 ```
 
 **Why this pattern is better:** The link only holds data — not a view. This is faster (no eager view creation) and separates navigation logic from link presentation.
+
+---
+
+## NavigationSplitView
+
+A two- (or three-) column master/detail container. On a wide screen (iPad, landscape) it shows the columns side by side; on a compact screen (iPhone) SwiftUI **automatically collapses it to a `NavigationStack`** — same code, right layout per device.
+
+```swift
+NavigationSplitView {
+    List(filteredResorts) { resort in
+        NavigationLink(value: resort) {
+            ResortRow(resort: resort)
+        }
+    }
+    .navigationTitle("Resorts")
+    .navigationDestination(for: Resort.self) { resort in
+        ResortView(resort: resort)
+    }
+} detail: {
+    WelcomeView()   // shown on the right when nothing is selected
+}
+```
+
+- The **first** closure is the sidebar/primary column; the `detail:` closure is the secondary pane.
+- `navigationDestination(for:)` still drives the push — on iPhone it pushes, on iPad it swaps the detail pane.
+- The `detail:` view is the "nothing selected yet" placeholder a wide layout needs.
+
+!!! tip "Steering the collapsed layout"
+    Use `NavigationSplitView(preferredCompactColumn:)` to choose which column wins when collapsed, and `.navigationSplitViewStyle(.balanced)` to tune how a three-column layout distributes width.
+
+---
+
+## Searchable
+
+`.searchable` adds the system search bar to a `NavigationStack` / `NavigationSplitView`. It only binds a `String` — *you* do the filtering, usually with a computed property.
+
+```swift
+@State private var searchText = ""
+
+var filteredResorts: [Resort] {
+    if searchText.isEmpty {
+        resorts
+    } else {
+        resorts.filter { $0.name.localizedStandardContains(searchText) }
+    }
+}
+
+// ...
+List(filteredResorts) { resort in /* ... */ }
+    .searchable(text: $searchText, prompt: "Search for a resort")
+```
+
+**`localizedStandardContains`** is the right matcher for user-facing text — it's case- *and* diacritic-insensitive, so "saint" matches "Saint" and "resume" matches "résumé". Don't hand-roll `lowercased().contains()`.
 
 ---
 
@@ -167,6 +220,8 @@ Setting `selectedTab = "me"` from anywhere switches to that tab.
 | Need | Solution |
 |---|---|
 | Push a new screen | `NavigationLink(value:)` + `.navigationDestination(for:)` |
+| Master/detail (adaptive iPad ↔ iPhone) | `NavigationSplitView { } detail: { }` |
+| Filter a list with a search bar | `.searchable(text:)` + a computed `filtered` array |
 | Present modal | `.sheet(isPresented:)` |
 | Full-screen modal | `.fullScreenCover(isPresented:)` |
 | Dismiss from inside sheet | `@Environment(\.dismiss)` |

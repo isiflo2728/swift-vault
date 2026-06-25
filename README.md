@@ -30,6 +30,11 @@ Every entry is written after the concept clicked. That means the explanations re
 | SwiftDataProject | SwiftData deep dive — relationships, `#Predicate`, `SortDescriptor`, iCloud sync |
 | InstaFilter | Core Image — `CIFilter`, `CIContext`, `PhotosPicker`, `ShareLink`, StoreKit review prompts |
 | BucketList | MapKit — custom annotations, `MapReader`, Wikipedia API, Face ID / Touch ID |
+| AccessibilitySandbox | Accessibility APIs — VoiceOver, Voice Control, traits, grouping, adjustable actions |
+| HotProspects | `TabView`, local notifications, QR scanning, dynamic SwiftData queries |
+| FlashZilla | Gestures, Combine timers, `scenePhase`, accessibility environment values |
+| LayoutandGeometry | Layout system + scroll-driven geometry — `GeometryReader`, `visualEffect` |
+| SnowSeeker | Adaptive UI — `NavigationSplitView`, `.searchable`, `@Observable` in `@Environment` |
 
 ## The Code
 

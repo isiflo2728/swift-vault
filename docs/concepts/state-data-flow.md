@@ -2,7 +2,7 @@
 
 > How data moves through a SwiftUI app — from a single button tap to shared state across an entire screen stack.
 
-**Appears in:** WordScramble · iExpense · Moonshot · Cupcake Corner · BookWorm
+**Appears in:** WordScramble · iExpense · Moonshot · Cupcake Corner · BookWorm · SnowSeeker
 
 ---
 
@@ -106,6 +106,28 @@ Values injected by the system (or by you) that flow down the view tree without e
 ```
 
 **When to use:** Data that should be accessible anywhere below a certain point in the tree without cluttering every init signature.
+
+### Putting an `@Observable` into the environment
+
+`@Environment` isn't just for system keypaths — you can inject your own `@Observable` model and read it back **by type** anywhere below. Inject once:
+
+```swift
+@State private var favorites = Favorites()   // @Observable class
+
+NavigationSplitView { /* ... */ }
+    .environment(favorites)
+```
+
+Read it deep in the tree with no `init` plumbing — and because it's `@Observable`, the reader re-renders the instant the model changes:
+
+```swift
+struct ResortView: View {
+    @Environment(Favorites.self) var favorites   // by type, not keypath
+    // favorites.add(resort) here updates the heart back in the list automatically
+}
+```
+
+This is the pattern to reach for when shared state is needed in two places far apart in the hierarchy (e.g. a list row and a detail screen) — cleaner than threading the model through every view between them.
 
 ---
 
